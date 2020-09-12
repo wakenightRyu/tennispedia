@@ -8,7 +8,7 @@ class Player
     belongs_to :handedness
     belongs_to :forehand_grip
     belongs_to :backhand_type
-    has_one_attached :profile_image
+    has_one_attached :player_image
     has_many :strokes, through: :player_strokes
     has_many :player_strokes
     has_many :player_users
