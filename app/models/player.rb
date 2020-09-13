@@ -25,6 +25,13 @@ class Player < ApplicationRecord
         country.translations[I18n.locale.to_s] || country.name
       end
 
+    
+    
+    
+    private
 
+    def player_params
+        params.require(:player).permit(:player_image, :first_name, :last_name, :sex_id, :birthdate, :country, :feet, :inches, :handedness_id, :forehand_grip_id, :backhand_type_id)
+    end
 
 end

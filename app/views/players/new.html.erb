@@ -27,7 +27,10 @@
         <%=f.collection_select :forehand_grip_id, ForehandGrip.all, :id, :name, class: "input-field", include_blank: "Select Forehand"%> <br><br>
 
         <p class="input-type">Backhand Type</p>
-        <%=f.collection_select :backhand_type_id, BackhandType.all, :id, :name, class: "input-field", include_blank: "Select Backhand"%> <br><br><br>
+        <%=f.collection_select :backhand_type_id, BackhandType.all, :id, :name, class: "input-field", include_blank: "Select Backhand"%> <br><br>
+
+        <p class="input-type">Player Photo</p>
+        <%=f.file_field :player_image, class: "image-upload"%><br><br><br>
 
         <%=f.submit 'Submit'%>
 
