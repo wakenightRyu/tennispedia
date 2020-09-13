@@ -3,6 +3,11 @@ class Player
     string :last_name
     date :birthdate
     integer :height
+    integer :sex_id
+    integer :country_id
+    integer :handedness_id
+    integer :forehand_grip_id
+    integer :backhand_type_id
     belongs_to :sex
     belongs_to :country
     belongs_to :handedness

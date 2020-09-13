@@ -10,11 +10,15 @@
         <p class="input-type">Birth Date</p>
         <%=f.date_field :birthdate, class: "input-field", placeholder: "MM/DD/YYYY"%> <br><br>
 
+        <p class="input-type">Country</p>
+        <%=f.country_select :country, class: "input-field", placeholder: "Country"%> <br><br>
+
         <p class="input-type">Height</p>
-        <%=f.number_field :feet, class: "input-field", placeholder: "feet"%>
-        <%=f.number_field :inches, class: "input-field", placeholder: "inches"%> <br><br>
+        <%=f.number_field :feet, class: "input-field-height", placeholder: "ft"%>&nbsp;'&nbsp;
+        <%=f.number_field :inches, class: "input-field-height", placeholder: "in"%>&nbsp;" <br><br>
 
-
+        <p class="input-type">Handedness</p>
+        <%=f.collection_select :handedness_id, Handedness.all, :id, :name, class: "input-field", placeholder: "Handedness"%> <br><br>
 
 
 
