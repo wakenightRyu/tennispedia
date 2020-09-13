@@ -1,0 +1,25 @@
+<div class="new-player-form">
+    <%=form_for :player do |f|%>
+        <h3 class="form-header">Add Player</h3>
+        <p class="input-type">First Name</p>
+        <%=f.text_field :first_name, class: "input-field", placeholder: "First Name"%> <br><br>
+
+        <p class="input-type">Last Name</p>
+        <%=f.text_field :last_name, class: "input-field", placeholder: "Last Name"%> <br><br>
+
+        <p class="input-type">Birth Date</p>
+        <%=f.date_field :birthdate, class: "input-field", placeholder: "MM/DD/YYYY"%> <br><br>
+
+        <p class="input-type">Height</p>
+        <%=f.number_field :feet, class: "input-field", placeholder: "feet"%>
+        <%=f.number_field :inches, class: "input-field", placeholder: "inches"%> <br><br>
+
+
+
+
+
+
+
+
+    <%end%>
+</div>
