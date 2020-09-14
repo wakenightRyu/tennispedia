@@ -4,4 +4,15 @@
     <div class="add-new">
         Add Player
     </div>
-<%end%>
+<%end%> <br><br>
+
+<%@players.map{|last_name| last_name}.sort{|a,b| b<=>a}.each do |player|%>
+    
+    <div class="player-card">
+        <%=link_to "/players/#{player.slug}" do%>
+            <%=player.fullname%> <br><br>
+            <%=image_tag player.player_image, :class=>"player-index-img"%>
+        <%end%>
+    </div>
+    
+<%end%> 

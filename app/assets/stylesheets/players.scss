@@ -1,4 +1,30 @@
+/* Players/New */
+/* =========== */
 
 .input-field-height {
     width: 40px;
+}
+
+/* Players/Show */
+/* ============ */
+
+img {
+    width: 300px;
+}
+
+/* Players/Index*/
+/* ============ */
+
+.player-card {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+}
+
+.player-card a {
+    text-decoration: none;
+}
+
+.player-index-img {
+    width: 200px;
 }
