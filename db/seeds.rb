@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Sex.destroy_all
+Handedness.destroy_all
+ForehandGrip.destroy_all
+BackhandType.destroy.all
+#destroy_all to prevent duplicate seeding during rake db:seed
+
 Sex.create(name: 'Female')
 Sex.create(name: 'Male')
 

@@ -7,7 +7,7 @@ class Player < ApplicationRecord
     validates :birthdate, presence: true
     validates :feet, presence: true
     validates :inches, presence: true
-    validates :country, presence: true
+    validates :country_id, presence: true
     validates :handedness_id, presence: true
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
@@ -40,7 +40,10 @@ class Player < ApplicationRecord
         self.all.find{|user| user.slug == slug}
     end
 
-  
+    def age
+        now = Time.now.utc.to_date
+        now.year - self.birthdate.year - (self.birthdate.to_date.change(:year => now.year) > now ? 1 : 0)
+    end 
 
     
     

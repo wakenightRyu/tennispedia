@@ -13,3 +13,11 @@
  *= require_tree .
  *= require_self
  */
+
+ * {
+     font-family: Maison Neue;
+ }
+
+ a {
+     color: rgb(76,120,184);
+ }
