@@ -1,0 +1,42 @@
+.new-country-form {
+    position: fixed;
+    margin-top: -8px;
+    width: 100%;
+    background-color: white;
+    border-bottom: 1px solid gray;
+}
+
+.new-country-form p {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.new-country-form p.source-link {
+    font-size: 12px;
+    margin-left: 100px;
+}
+
+.new-country-form .input-field {
+    margin-right: 40px;
+}
+
+.flag-content {
+    margin-top: 114px;
+}
+
+.country-line {
+    width: 300px;
+    display: inline-block;
+}
+
+.country-line img {
+    width: 40px;
+    border: 1px solid rgb(180,180,180);
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.country-line p {
+    display: inline-block;
+}

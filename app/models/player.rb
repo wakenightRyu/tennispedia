@@ -7,12 +7,14 @@ class Player < ApplicationRecord
     validates :birthdate, presence: true
     validates :feet, presence: true
     validates :inches, presence: true
+    validates :country, presence: true
     validates :handedness_id, presence: true
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
     
 
     belongs_to :sex
+    belongs_to :country
     belongs_to :handedness
     belongs_to :forehand_grip
     belongs_to :backhand_type

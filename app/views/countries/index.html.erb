@@ -1,0 +1,29 @@
+<div class="new-country-form">
+    <%=form_for :country do |f|%>
+        <h3 class="form-header">Add Country</h3>
+
+        <p class="input-type">Country Name</p>
+        <%=f.text_field :name, class: "input-field", placeholder: "Country Name"%> 
+
+        <p class="input-type">Flag Image</p>
+        <%=f.file_field :flag_image, class: "image-upload"%>
+
+        <%=f.submit 'Submit'%>
+
+        <p class="source-link"><i><a href="https://www.countries-ofthe-world.com/flags-of-the-world.html" target="_blank">Flag Sources</a></i></p>
+
+    <%end%>
+</div> <br><br>
+
+<div class="flag-content">
+
+    <h1>All Countries</h1>
+
+    <%@countries.sort_by{|c| c.name}.each do |country|%>
+        <div class="country-line">
+            <%=image_tag country.flag_image, class: "flag-index-img"%>
+            <p><%=country.name%> </p>
+        </div>
+    <%end%>
+</div>
+    

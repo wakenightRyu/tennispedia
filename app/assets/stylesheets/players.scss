@@ -7,9 +7,23 @@
 
 /* Players/Show */
 /* ============ */
+img.show-flag {
+    width: 50px;
+}
 
 img {
     width: 300px;
+}
+
+.player-country img.show-flag {
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid rgb(180,180,180);
+    margin-right: 5px;
+}
+
+.player-country p {
+    display: inline-block;
 }
 
 /* Players/Index*/
@@ -27,4 +41,12 @@ img {
 
 .player-index-img {
     width: 200px;
+}
+
+.player-card img.index-flag {
+    width: 40px;
+    border: 1px solid rgb(180,180,180);
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
 }

@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :countries
+  get '/countries' => 'countries#index'
+  post '/countries' => 'countries#create'
   get '/players' => 'players#index'
   
   get '/players/new' => 'players#new'

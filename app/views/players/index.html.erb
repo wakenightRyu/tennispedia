@@ -6,11 +6,12 @@
     </div>
 <%end%> <br><br>
 
-<%@players.map{|last_name| last_name}.sort{|a,b| b<=>a}.each do |player|%>
+<%@players.sort_by{|p| p.first_name}.each do |player|%>
     
     <div class="player-card">
         <%=link_to "/players/#{player.slug}" do%>
-            <%=player.fullname%> <br><br>
+            <%=player.fullname%> 
+            <%=image_tag player.country.flag_image, class: "index-flag"%> <br><br>
             <%=image_tag player.player_image, :class=>"player-index-img"%>
         <%end%>
     </div>
