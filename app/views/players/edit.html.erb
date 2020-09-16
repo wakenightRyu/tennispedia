@@ -1,0 +1,8 @@
+<div class="edit-page">
+    <h3 class="form-header">Edit Player</h3> 
+    <%=link_to "/players/#{@player.slug}/delete", :controller=>'players', :action=>'destroy' do%>
+        <p>delete player profile</p>
+    <%end%>
+</div>
+
+<%= render 'form'%>

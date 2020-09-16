@@ -8,6 +8,10 @@ class PlayersController < ApplicationController
         @player=Player.find_by_slug(params[:slug])
     end
 
+    def edit
+        @player=Player.find_by_slug(params[:slug])
+    end
+
     def new
     end
 
@@ -21,6 +25,21 @@ class PlayersController < ApplicationController
             render :new 
         end       
     end
+
+    def update
+        @player=Player.find_by_slug(params[:slug])
+        @player.update(player_params)
+        redirect_to player_path(@player.slug)
+    end
+
+    def destroy
+        @player= Player.find_by_slug(params[:slug])
+        
+        @player.destroy
+        redirect_to players_path
+    end
+
+
             
         
     private

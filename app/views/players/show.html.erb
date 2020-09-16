@@ -2,7 +2,11 @@
     <p> All Players </p>
 <%end%> 
 
-<h1><%=@player.fullname%></h1> <br><br>
+<h1><%=@player.fullname%></h1> 
+
+<%=link_to "/players/#{@player.slug}/edit" do%>
+    <p>edit player profile</p>
+<%end%> <br><br>
 
 <%=image_tag @player.player_image%> <br><br>
 
