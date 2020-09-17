@@ -6,6 +6,21 @@
     </div>
 <%end%> <br><br>
 
+<%=form_tag players_path, :method=> 'get', :html=>{:class=>'form-inline'} do %>
+
+    <div class="filter-menu">
+        <%=select_tag :forehand_grip_id,  options_for_select(ForehandGrip.all.collect{|f| [f.name, f.id]}, selected: params[:forehand_grip_id])%>
+    </div>
+
+    <div class="filter-menu">
+        <%=select_tag :backhand_type_id,  options_for_select(BackhandType.all.collect{|f| [f.name, f.id]}, selected: params[:backhand_type_id])%>
+    </div>
+
+    <%=submit_tag("Filter")%>
+<%end%> <br><br>
+
+
+
 <%@players.sort_by{|p| p.first_name}.each do |player|%>
     
     <div class="player-card">

@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
   get '/players' => 'players#index'
+
+  post '/players' => 'players#index'
   
   get '/players/new' => 'players#new'
   post '/players/new' => 'players#create'
@@ -16,7 +18,9 @@ Rails.application.routes.draw do
 
   get '/players/:slug/delete' => 'players#destroy'
 
-  post '/players/:slug/delete' => 'players#destroy'
+  #post '/players/:slug/delete' => 'players#destroy'  (not necessary)
+
+  
   
   resources :players, only: [:show] do
     resources :strokes, only: [:show, :new]

@@ -12,7 +12,7 @@ img.show-flag {
 }
 
 img {
-    width: 300px;
+    width: 250px;
 }
 
 .player-country img.show-flag {
@@ -28,6 +28,11 @@ img {
 
 /* Players/Index*/
 /* ============ */
+
+.filter-menu {
+    margin-right: 10px;
+    display: inline-block;
+}
 
 .player-card {
     display: inline-block;

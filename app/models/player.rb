@@ -45,6 +45,10 @@ class Player < ApplicationRecord
         now.year - self.birthdate.year - (self.birthdate.to_date.change(:year => now.year) > now ? 1 : 0)
     end 
 
+    scope :filter_by_forehand, -> (forehand_grip_ip) {where forehand_grip_id: forehand_grip_id}
+
+    scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
+
   
 
 
