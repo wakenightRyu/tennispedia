@@ -12,15 +12,13 @@ class Player < ApplicationRecord
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
     
-
     belongs_to :sex
     belongs_to :country
     belongs_to :handedness
     belongs_to :forehand_grip
     belongs_to :backhand_type
 
-    has_many :strokes, through: :player_strokes
-    has_many :player_strokes
+    has_many :videos
     has_many :users, through: :player_users
     has_many :player_users
 

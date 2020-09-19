@@ -14,10 +14,32 @@ class Player
     belongs_to :forehand_grip
     belongs_to :backhand_type
     has_one_attached :player_image
-    has_many :strokes, through: :player_strokes
-    has_many :player_strokes
+    has_many :videos
+    has_many :matches, through: :player_matches
+    has_many :player_matches
     has_many :player_users
     has_many :users, through: :player_users
+
+class Video
+    string :link
+    date :year
+    integer :player_id
+    integer :category_id
+    belongs_to :player
+    belongs_to :category
+
+class Match
+    string :link
+    string :tournament_name
+    date :year
+    integer :round_id
+    integer :surface_id
+    integer :type_id
+    belongs_to :round
+    belongs_to :surface
+    belongs_to :type
+    has_many :players, through: :player_matches
+    has_many :player_matches
 
 class Sex
     string :name
@@ -39,21 +61,6 @@ class ForehandGrip
 class BackhandType
     string :name
     has_many :players
-
-class Stroke
-    string :name
-    has_many :players, through: :player_strokes
-    has_many :player_strokes
-
-class StrokePhoto
-    has_one_attached :stroke_image
-    boolean :default
-    belongs_to :player
-    belongs_to :stroke
-
-class StrokeVideo
-    belongs_to :player
-    belongs_to :stroke
 
 class User
     string :name

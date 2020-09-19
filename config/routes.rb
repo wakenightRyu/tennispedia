@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :videos
   resources :countries
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
@@ -20,11 +21,14 @@ Rails.application.routes.draw do
 
   #post '/players/:slug/delete' => 'players#destroy'  (not necessary)
 
+  get '/players/:slug/videos/new' => 'videos#new'
+
   
   
   resources :players, only: [:show] do
-    resources :strokes, only: [:show, :new]
-  #players/petra-kvitova/strokes/forehand
+    resources :videos, only: [:new]
+    resources :matches, only: [:show, :new]
+  #players/petra-kvitova/matches/2017-wimbledon-vs-azarenka
   end
   
 end

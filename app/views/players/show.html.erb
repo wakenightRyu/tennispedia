@@ -22,3 +22,7 @@ Age: <%=@player.age%>
 
 
 
+
+<%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
+        <p>Add Video</p>
+    <%end%>

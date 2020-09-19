@@ -1,0 +1,16 @@
+<h3 class="form-header"><%="Add #{@player.fullname} Video"%></h3> 
+
+<div class="video-form">
+    <%=form_for :video do |f|%>
+        <p class="input-type">Video Link</p>
+        <%=f.text_field :link, class: "input-field", placeholder: "Video Link"%> <br><br>
+
+        <p class="input-type">Year</p>
+        <%=f.select :year,Date.today.year-30 .. Date.today.year%> <br><br>
+
+        <p class="input-type">Player</p>
+        <%=f.collection_select :player_id, Player.all, :id, :fullname, :selected=>@player.id%> <br><br>
+        
+
+
+    <%end%>
