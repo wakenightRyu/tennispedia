@@ -5,12 +5,23 @@
         <p class="input-type">Video Link</p>
         <%=f.text_field :link, class: "input-field", placeholder: "Video Link"%> <br><br>
 
+        <!--<p class="input-type">Player</p>
+        <%=f.collection_select :player_id, Player.all, :id, :fullname, :selected=>@player.id%>-->
+
+        <p class="input-type"Category></p>
+        <%=f.text_field :category_name, list: "categories_autocomplete", placeholder: "Enter Category"%>
+        <datalist id="categories_autocomplete">
+            <%Category.all.sort{|a,b| a.name <=> b.name}.each do |category|%>
+                <option value="<%=category.name%>">
+            <%end%>
+        </datalist>
+
         <p class="input-type">Year</p>
-        <%=f.select :year,Date.today.year-30 .. Date.today.year%> <br><br>
+        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}%> 
 
-        <p class="input-type">Player</p>
-        <%=f.collection_select :player_id, Player.all, :id, :fullname, :selected=>@player.id%> <br><br>
+        <br><br><br>
+
+        <%=f.submit 'Submit'%><br><br><br>
         
-
-
     <%end%>
+</div>

@@ -41,6 +41,10 @@ class Match
     has_many :players, through: :player_matches
     has_many :player_matches
 
+class Category
+    string :name
+    has_many :videos
+
 class Sex
     string :name
     has_many :players

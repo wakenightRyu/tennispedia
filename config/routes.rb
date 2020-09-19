@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   get '/players/:slug/videos/new' => 'videos#new'
 
+  post '/players/:slug/videos/new' => 'videos#create'
   
   
   resources :players, only: [:show] do

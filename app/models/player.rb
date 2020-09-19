@@ -19,6 +19,8 @@ class Player < ApplicationRecord
     belongs_to :backhand_type
 
     has_many :videos
+    has_many :matches, through: :player_matches
+    has_many :player_matches
     has_many :users, through: :player_users
     has_many :player_users
 
@@ -42,6 +44,7 @@ class Player < ApplicationRecord
         now = Time.now.utc.to_date
         now.year - self.birthdate.year - (self.birthdate.to_date.change(:year => now.year) > now ? 1 : 0)
     end 
+
 
     scope :filter_by_forehand, -> (forehand_grip_ip) {where forehand_grip_id: forehand_grip_id}
 
