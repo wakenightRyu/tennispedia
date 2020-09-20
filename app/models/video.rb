@@ -1,6 +1,7 @@
 class Video < ApplicationRecord
-    validates :link, presence: true
+    validates :link, presence: true, uniqueness: true
     validates :category_name, presence: true
+    validate :link_valid?
 
     belongs_to :player
     belongs_to :category
@@ -14,7 +15,14 @@ class Video < ApplicationRecord
     end
 
     def youtube_url_parse
-        youtube_id=self.link.match(/(src=|src=\\)\"(\/\/|http:\/\/)?(www\.)(youtube.com|youtube-nocookie.com|youtu.be)\/embed\/(.{11})(.+)\"/)[5]
-        puts youtube_id
+        remove="https://www.youtube.com/watch?v="
+
+        self.link.slice! remove
+        self.link
     end
+
+    def link_valid?
+        !Video.all.map{|video| video.link}.include?(link)
+    end
+    
 end

@@ -24,5 +24,28 @@ Age: <%=@player.age%>
 
 
 <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
-        <p>Add Video</p>
-    <%end%>
+    <p>Add Video</p>
+<%end%>
+
+
+<%@player.categories.uniq.each do |category|%>
+    <h3><%=category.name%></h3>
+    <div class="player-category-videos">
+        <%category.videos.select{|video| video.player_id==@player.id}.sort_by{|video| video.year}.reverse.each do |video|%>
+            <div class="individual-card">
+                <iframe width="426" height="240" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                <p class="video-year"><%=video.year%></p>
+            </div>
+        <%end%> 
+    </div> <br>
+<%end%>
+
+
+
+
+
+
+
+<!--<%=@player.videos.each do |video|%>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<%end%>-->

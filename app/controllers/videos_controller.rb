@@ -8,9 +8,8 @@ class VideosController < ApplicationController
         @player=Player.find_by_slug(params[:slug])
 
         @video=Video.new(video_params)
-     
 
-        if @video.link.present?
+        if @video.link_valid?
             @video.player_id = @player.id
             @video.year=params[:video][:year].to_i
             @video.save
