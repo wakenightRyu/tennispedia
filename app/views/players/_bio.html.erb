@@ -1,0 +1,26 @@
+<div class="fixed-bio">
+    <p><%=link_to '/players' do%>
+        <p> All Players </p>
+    <%end%> 
+
+    <h1><%=@player.fullname%></h1> 
+
+    <%=link_to "/players/#{@player.slug}/edit" do%>
+        <p>edit player profile</p>
+    <%end%> <br><br>
+
+    <%=image_tag @player.player_image%> <br><br>
+
+    <div class="player-country">
+       <%=image_tag @player.country.flag_image, class: "show-flag"%> 
+       <p><%=@player.country.name%></p>
+    </div>
+
+
+    Height: <%=@player.feet%>'<%=@player.inches%>" <br><br>
+
+    Age: <%=@player.age%>
+
+
+
+</div>

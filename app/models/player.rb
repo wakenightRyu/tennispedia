@@ -46,6 +46,11 @@ class Player < ApplicationRecord
         now.year - self.birthdate.year - (self.birthdate.to_date.change(:year => now.year) > now ? 1 : 0)
     end 
 
+    def video_count
+        self.videos.count
+    end
+
+
 
     scope :filter_by_forehand, -> (forehand_grip_ip) {where forehand_grip_id: forehand_grip_id}
 
