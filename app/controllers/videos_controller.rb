@@ -1,5 +1,9 @@
 class VideosController < ApplicationController
 
+    def index
+        @player=Player.find_by_slug(params[:slug])
+    end
+
     def new
         @player=Player.find_by_slug(params[:slug])
     end

@@ -19,34 +19,51 @@
 
 /* Players/Show */
 /* ============ */
-.video-section {
-    float:left;
-    margin-left: 300px;
-}
 
 .video-header {
     position: fixed;
+    left: 279px;
     width: 100%;
     background-color: white;
     border-bottom: 1px solid gray;
-    height: 50px;
+    height: 54px;
     margin-top: -8px;
     margin-bottom: 20px;
 }
 
-.video-header p {
-    position: inline-block;
+.video-header a.match-link {
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    margin-left: 58px;
+    top: 17px;
+    text-decoration: none;
+}
+
+.video-header a.second-link {
+    font-size: 18px;
+    position: relative;
+    display: inline-block;
+    margin-left: 40px;
+    top: 17px;
+    text-decoration: none;
+}
+
+.video-header a.current-page {
+    font-weight:600;
 }
 
 .video-header a {
     text-decoration: none;
     position: fixed;
-    margin-top: -35px;
-    right: 60px;
+    top: 17px;
+    right: 30px;
 }
 
 .videos {
-    margin-top: 80px;
+    float:left;
+    margin-left: 300px;
+    margin-top: 70px;
 }
 
 img.show-flag {
@@ -71,6 +88,7 @@ img {
 .individual-card   {
     display: inline-block;
     margin-bottom: 20px;
+    margin-right:15px;
 }
 
 .individual-card p {

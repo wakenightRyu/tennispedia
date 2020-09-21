@@ -1,0 +1,28 @@
+<%=render partial: 'players/bio', locals:{player: @player}%>
+
+<div class="video-header">
+    <%=link_to "Videos", "/players/#{@player.slug}", class: "match-link current-page"%>
+
+    <%=link_to "Matches", "/players/#{@player.slug}/matches", class: "second-link" %>
+
+    <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
+        + Add Video
+    <%end%>
+</div>
+
+    <div class="videos">
+        <%@player.categories.uniq.each do |category|%>
+            
+            <h3><%=category.name.upcase%></h3>
+            <div class="player-category-videos">
+                <%category.videos.select{|video| video.player_id==@player.id}.sort_by{|video| video.year}.reverse.each do |video|%>
+                    <div class="individual-card">
+                        <iframe width="426" height="240" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
+                        <p class="video-year"><%=video.year%></p>
+                    </div>
+                <%end%> 
+            </div> <br>
+        <%end%>
+    </div>
+
+</div> <!--video-section-->

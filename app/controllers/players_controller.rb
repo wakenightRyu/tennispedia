@@ -11,6 +11,10 @@ class PlayersController < ApplicationController
         @player=Player.find_by_slug(params[:slug])
     end
 
+    def match
+        @player=Player.find_by_slug(params[:slug])
+    end
+
     def edit
         @player=Player.find_by_slug(params[:slug])
     end

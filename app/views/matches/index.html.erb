@@ -1,0 +1,11 @@
+<%=render partial: 'players/bio', locals:{player: @player}%>
+
+<div class="video-header">
+    <%=link_to "Videos", "/players/#{@player.slug}/videos", class: "match-link"%>
+
+    <%=link_to "Matches", "/players/#{@player.slug}/matches", class: "second-link current-page" %>
+
+    <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
+        + Add Match
+    <%end%>
+</div>
