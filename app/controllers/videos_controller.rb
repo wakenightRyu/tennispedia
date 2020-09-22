@@ -13,12 +13,12 @@ class VideosController < ApplicationController
 
         @video=Video.new(video_params)
 
-        if @video.link_valid?
+        if @video.valid_link?
             @video.player_id = @player.id
             @video.year=params[:video][:year].to_i
             @video.save
             @player.videos <<@video
-            redirect_to player_path(@player.slug)
+            redirect_to "/players/#{@player.slug}/videos"
         else 
             render :new
         end

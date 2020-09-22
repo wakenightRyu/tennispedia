@@ -1,7 +1,8 @@
 class Video < ApplicationRecord
     validates :link, presence: true, uniqueness: true
     validates :category_name, presence: true
-    validate :link_valid?
+    validate :youtube_link?
+    validate :unique_link?
 
     belongs_to :player
     belongs_to :category
@@ -21,8 +22,18 @@ class Video < ApplicationRecord
         self.link
     end
 
-    def link_valid?
+    def youtube_link?
+        prefix="https://www.youtube.com/watch?v="
+        self.link.include?(prefix)
+    end
+
+    def unique_link?
         !Video.all.map{|video| video.link}.include?(link)
+    end
+
+    def valid_link?
+        self.youtube_link? && self.unique_link?
+    
     end
     
 end
