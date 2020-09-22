@@ -6,6 +6,8 @@ class Video < ApplicationRecord
 
     belongs_to :player
     belongs_to :category
+    has_many :users, through: :user_videos
+    has_many :user_videos
 
     def category_name=(name)
         self.category=Category.find_or_create_by(name: name)

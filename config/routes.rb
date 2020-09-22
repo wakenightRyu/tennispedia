@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :users
   resources :videos
   resources :countries
   get '/countries' => 'countries#index'
