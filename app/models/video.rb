@@ -35,7 +35,6 @@ class Video < ApplicationRecord
 
     def valid_link?
         self.youtube_link? && self.unique_link?
-    
     end
     
 end

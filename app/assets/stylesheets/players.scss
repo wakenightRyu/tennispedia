@@ -14,7 +14,7 @@
     width: 270px;
     border-right: 1px solid gray;
     margin-right: 20px;
-    margin-top: -8px;
+    margin-top: 36px;
 }
 
 /* Players/Show */
@@ -27,7 +27,7 @@
     background-color: white;
     border-bottom: 1px solid gray;
     height: 54px;
-    margin-top: -8px;
+    margin-top: 36px;
     margin-bottom: 20px;
 }
 
@@ -56,14 +56,14 @@
 .video-header a {
     text-decoration: none;
     position: fixed;
-    top: 17px;
+    top: 62px;
     right: 30px;
 }
 
 .videos {
     float:left;
     margin-left: 300px;
-    margin-top: 70px;
+    margin-top: 106px;
 }
 
 img.show-flag {
@@ -97,6 +97,11 @@ img {
 
 /* Players/Index*/
 /* ============ */
+
+.players-content {
+    position: relative;
+    margin-top: 66px;
+}
 
 .filter-menu {
     margin-right: 10px;

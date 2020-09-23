@@ -21,3 +21,42 @@
  a {
      color: rgb(76,120,184);
  }
+
+ .header {
+     position: fixed;
+     top: 0px;
+     width: 100%;
+     height: 44px;
+     background-color: rgb(25,58,102);
+     margin-left: -8px;
+     z-index: 10;
+ }
+
+ .header h3 {
+     color: white;
+     margin-top: 12px;
+     margin-left: 8px;
+     float: left;
+ }
+
+ .user-login {
+     position: fixed;
+     margin-top: 12px;
+     float: right;
+     right: 40px;   
+ }
+
+ .user-login p {
+     font-size: 14px;
+     display: inline-block;
+     margin-top: -80px;
+ }
+
+.user-login a {
+    text-decoration: none;
+    color: rgb(200,200,200);
+}
+
+a.first-login-link {
+    margin-right: 20px;
+}

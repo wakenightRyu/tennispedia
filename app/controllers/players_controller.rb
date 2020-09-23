@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
 
     def index
+
         @players=Player.where(nil)
         filtering_params(params).each do |key, value|
             @players=@players.public_send("filter_by_#{key}", value) if value.present?
@@ -24,10 +25,10 @@ class PlayersController < ApplicationController
 
     def create
         @player=Player.new(player_params)
-      
-        if @player.valid? && @player.image_valid
+    
+        if @player.valid? && @player.unique_name?
             @player.save
-            redirect_to player_path(@player.slug)
+            redirect_to "/players/#{@player.slug}/videos"
         else
             render :new 
         end       
@@ -36,7 +37,7 @@ class PlayersController < ApplicationController
     def update
         @player=Player.find_by_slug(params[:slug])
         @player.update(player_params)
-        redirect_to player_path(@player.slug)
+        redirect_to "/players/#{@player.slug}/videos"
     end
 
     def destroy

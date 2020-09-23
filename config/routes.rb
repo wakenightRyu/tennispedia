@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :users
   resources :videos
   resources :countries
+
+  get '/signup' => 'users#new'
+  post '/users/new' => 'users#create'
+  get '/users/:slug' => 'users#show'
+
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
   get '/players' => 'players#index'

@@ -1,7 +1,7 @@
-<div class="new-player-form">
+<div class="player-form">
     <%=form_for :player do |f|%>
         <p class="input-type">First Name</p>
-        <%=f.text_field :first_name, class: "input-field", placeholder: "First Name"%> <br><br>
+        <%=f.text_field :first_name, class: "input-field", placeholder: "First Name", autocomplete: "off"%> <br><br>
 
         <p class="input-type">Last Name</p>
         <%=f.text_field :last_name, class: "input-field", placeholder: "Last Name"%> <br><br>

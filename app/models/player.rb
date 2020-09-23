@@ -11,6 +11,8 @@ class Player < ApplicationRecord
     validates :handedness_id, presence: true
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
+    validate :unique_name?
+    validate :image_valid?
     
     belongs_to :sex
     belongs_to :country
@@ -25,7 +27,7 @@ class Player < ApplicationRecord
     has_many :users, through: :player_users
     has_many :player_users
 
-    def image_valid
+    def image_valid?
         player_image.attached?
     end
 
@@ -36,6 +38,11 @@ class Player < ApplicationRecord
     def fullname
         [first_name, last_name].join(" ")
     end
+
+    def unique_name?
+        !Player.all.map{|player|player.fullname}.include?(fullname)
+    end
+
 
     def self.find_by_slug(slug)
         self.all.find{|user| user.slug == slug}
