@@ -1,5 +1,6 @@
 <div class="header">
     <h3>TENNISPEDIA</h3>
+    <a href="/players" class="all-players">All Players</a>
     <div class="user-login">
         <%if logged_in?%>
             <p><%=link_to "#{current_user.name}'s Profile", "/users/#{current_user.slug}"%></p>

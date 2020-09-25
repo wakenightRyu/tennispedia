@@ -1,39 +1,41 @@
 <%=render 'application/header'%>
 
+
+<div class="index-second-header">
+    <h1>Players</h1>
+
+    <%=link_to "Add Player","/players/new", class: "add-player" %> 
+
+    <div class="filter-input">
+        <%=form_tag players_filter_path, :method=> 'post', :html=>{:class=>'form-inline'} do %>
+            <div class="filter-menu">
+                <%=select_tag :sex_id,  options_for_select(Sex.all.collect{|f| [f.name, f.id]}, selected: params[:sex_id]), :include_blank => 'All Sexes'%>
+            </div>
+            <div class="filter-menu">
+                <%=select_tag :handedness_id,  options_for_select(Handedness.all.collect{|f| [f.name, f.id]}, selected: params[:handedness_id]), :include_blank => 'All Handedness'%>
+            </div>
+            <div class="filter-menu">
+                <%=select_tag :forehand_grip_id,  options_for_select(ForehandGrip.all.collect{|f| [f.name, f.id]}, selected: params[:forehand_grip_id]), :include_blank => 'All Forehands'%>
+            </div>
+            <div class = "filter-menu">
+                <%=select_tag :backhand_type_id,  options_for_select(BackhandType.all.collect{|f| [f.name, f.id]}, selected: params[:backhand_type_id]), :include_blank => 'All Backhands'%>
+            </div>
+            <div class = "filter-menu">
+                <%=select_tag :country_id,  options_for_select(Country.all.sort_by{|c| c.name}.collect{|f| [f.name, f.id]}, selected: params[:country_id]), :include_blank => 'All Countries'%>
+            </div>
+            <%=submit_tag("Filter")%>
+        <%end%> <br><br>
+    </div><!--filter-input-->
+</div><!--index-second-header-->
+
 <div class="players-content">
-<h1>Players</h1>
-
-<%=link_to '/players/new' do%>
-    <div class="add-new">
-        Add Player
-    </div>
-<%end%> <br><br>
-
-<%=form_tag players_path, :method=> 'get', :html=>{:class=>'form-inline'} do %>
-
-    <div class="filter-menu">
-        <%=select_tag :forehand_grip_id,  options_for_select(ForehandGrip.all.collect{|f| [f.name, f.id]}, selected: params[:forehand_grip_id])%>
-    </div>
-
-    <div class="filter-menu">
-        <%=select_tag :backhand_type_id,  options_for_select(BackhandType.all.collect{|f| [f.name, f.id]}, selected: params[:backhand_type_id])%>
-    </div>
-
-    <%=submit_tag("Filter")%>
-<%end%> <br><br>
-
-
-
-<%@players.sort_by{|p| p.first_name}.each do |player|%>
-    
-    <div class="player-card">
-        <%=link_to "/players/#{player.slug}/videos" do%>
-            <%=player.fullname%> 
-            <%=image_tag player.country.flag_image, class: "index-flag"%> <br><br>
-            <%=image_tag player.player_image, :class=>"player-index-img"%>
-        <%end%>
-    </div>
-    
-<%end%> 
-
-</div>
+    <%@players.sort_by{|p| p.first_name}.each do |player|%>
+        <div class="player-card">
+            <%=link_to "/players/#{player.slug}/videos" do%>
+                <%=player.fullname%> 
+                <%=image_tag player.country.flag_image, class: "index-flag"%> <br><br>
+                <%=image_tag player.player_image, :class=>"player-index-img"%>
+            <%end%>
+        </div>
+    <%end%> 
+</div><!--players-content-->

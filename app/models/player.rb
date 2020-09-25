@@ -59,10 +59,15 @@ class Player < ApplicationRecord
 
 
 
-    scope :filter_by_forehand, -> (forehand_grip_ip) {where forehand_grip_id: forehand_grip_id}
+    scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 
     scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
 
+    scope :filter_by_handedness, -> (handedness_id) {where handedness_id: handedness_id}
+
+    scope :filter_by_sex, -> (sex_id) {where sex_id: sex_id}
+
+    scope :filter_by_country, -> (country_id) {where country_id: country_id}
   
 
 

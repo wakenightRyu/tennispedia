@@ -18,6 +18,8 @@
      font-family: Maison Neue;
  }
 
+ 
+
  a {
      color: rgb(76,120,184);
  }
@@ -39,11 +41,19 @@
      float: left;
  }
 
+ a.all-players {
+     position: absolute;
+     margin-top: 13px;
+     margin-left: 50px;
+     text-decoration: none;
+     color: rgb(200,200,200);
+ }
+
  .user-login {
      position: fixed;
      margin-top: 12px;
      float: right;
-     right: 40px;   
+     right: 32px;   
  }
 
  .user-login p {

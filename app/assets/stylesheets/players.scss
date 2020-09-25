@@ -17,6 +17,24 @@
     margin-top: 36px;
 }
 
+.player-country p {
+    font-size: 14px;
+}
+
+.player-country {
+    margin-top: -13px;
+}
+
+.player-details {
+    margin-top: -9px;
+    margin-bottom: 22px;
+}
+
+.player-details p {
+    font-size: 14px;
+    margin-bottom: -2px;
+}
+
 /* Players/Show */
 /* ============ */
 
@@ -67,11 +85,11 @@
 }
 
 img.show-flag {
-    width: 50px;
+    width: 40px;
 }
 
 img {
-    width: 250px;
+    width: 240px;
 }
 
 .player-country img.show-flag {
@@ -98,9 +116,34 @@ img {
 /* Players/Index*/
 /* ============ */
 
-.players-content {
-    position: relative;
-    margin-top: 66px;
+.index-second-header {
+    position:fixed;
+    width: 100%;
+    margin-left: -8px;
+    margin-top: 36px;
+    padding-top: 20px;
+    height: 56px;
+    border-bottom: 1px solid gray;
+    background-color: white;
+    z-index: 10;
+}
+
+.index-second-header h1 {
+    float: left;
+    margin-top: -1px;
+    margin-left: 8px;
+}
+
+.index-second-header .filter-input {
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 54px;
+}
+
+.index-second-header a.add-player {
+    position: absolute;
+    margin-top: 9px;
+    right: 34px;
 }
 
 .filter-menu {
@@ -108,10 +151,15 @@ img {
     display: inline-block;
 }
 
+.players-content {
+    position: absolute;
+    margin-top: 156px;    
+}
+
 .player-card {
     display: inline-block;
-    vertical-align: top;
     margin-right: 20px;
+    margin-bottom: 42px;
 }
 
 .player-card a {

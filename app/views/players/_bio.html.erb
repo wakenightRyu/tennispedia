@@ -1,13 +1,6 @@
 <div class="fixed-bio">
-    <p><%=link_to '/players' do%>
-        <p> All Players </p>
-    <%end%> 
 
     <h1><%=@player.fullname%></h1> 
-
-    <%=link_to "/players/#{@player.slug}/edit" do%>
-        <p>edit player profile</p>
-    <%end%> <br><br>
 
     <%=image_tag @player.player_image%> <br><br>
 
@@ -16,11 +9,17 @@
        <p><%=@player.country.name%></p>
     </div>
 
+    <div class=player-details>
+        <p>Height: <%=@player.feet%>'<%=@player.inches%>"</p> 
+        <p>Age: <%=@player.age%></p>
+        <p><%=@player.handedness.name%></p>
+        <p>Forehand: <%=@player.forehand_grip.name%></p>
+        <p>Backhand: <%=@player.backhand_type.name%></p>
+    </div>
 
-    Height: <%=@player.feet%>'<%=@player.inches%>" <br><br>
-
-    Age: <%=@player.age%>
-
-
+    <%=link_to "/players/#{@player.slug}/edit" do%>
+        <p>edit player profile</p>
+    <%end%> <br><br>
 
 </div>
+

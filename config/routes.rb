@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
+
+  post '/players/filter' => 'players#filter'
+
   get '/players' => 'players#index'
 
   post '/players' => 'players#index'
