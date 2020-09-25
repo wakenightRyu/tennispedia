@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :countries
 
   get '/signup' => 'users#new'
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   post '/users/new' => 'users#create'
   get '/users/:slug' => 'users#show'
 
@@ -35,6 +37,10 @@ Rails.application.routes.draw do
   post '/players/:slug/videos/new' => 'videos#create'
 
   get '/players/:slug/matches' => 'matches#index'
+
+  get '/logout' => 'sessions#destroy'
+  post '/logout' => 'sessions#destroy'
+  delete '/logout' => 'sessions#destroy'
   
   
   resources :players, only: [:show] do
