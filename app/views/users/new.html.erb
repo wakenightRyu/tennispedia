@@ -14,7 +14,9 @@
 
         <%=f.submit "Submit", id: "submit"%>
     <%end%>
+    
+    <p class="signup-login">Already a user?&nbsp; <%=link_to "Log In", login_path%></p>
+
     <p class="social-login"><%= link_to('Sign up with Facebook', '/auth/facebook') %></p>
-    <p class="signup-login"><%=link_to "Log In", login_path%></p>
 </div> <br>
 
