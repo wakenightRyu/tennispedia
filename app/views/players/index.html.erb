@@ -29,7 +29,7 @@
 </div><!--index-second-header-->
 
 <div class="players-content">
-    <!--<%=@players.count%> Players <br><br>-->
+    <h4><i><%=@players.count%> players found </i></h4><br><br>
     <%@players.sort_by{|p| p.first_name}.each do |player|%>
         <div class="player-card">
             <%=link_to "/players/#{player.slug}/videos" do%>
