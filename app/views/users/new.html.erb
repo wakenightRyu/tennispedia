@@ -1,3 +1,5 @@
+<%=render partial: "sessions/background"%>
+
 <h3 class="form-header">Sign Up</h3>
 
 <div class="user-form">
@@ -12,6 +14,6 @@
 
         <%=f.submit "Submit", id: "submit"%>
     <%end%>
+    <p class="signup-login"><%=link_to "Log In", login_path%></p>
 </div> <br>
 
-<p><%=link_to "Log In", login_path%></p>
