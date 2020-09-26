@@ -1,11 +1,17 @@
 class UsersController < ApplicationController
 
     def show
-        @user=User.find_by_slug(params[:id])
+
+        @user=User.find(session[:user_id])
     end
 
     def new
-        
+        if logged_in?
+            @user=current_user
+            redirect_to "/users/#{@user.slug}"
+        else
+            render 'new'
+        end
     end
 
     def create

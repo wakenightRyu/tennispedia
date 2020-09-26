@@ -18,15 +18,35 @@ class SessionsController < ApplicationController
                     session[:user_id]=@user.id
                     redirect_to "/users/#{@user.slug}"
                 else
-                redirect_to '/login'
+                    flash[:message]="Login error. Please try again."
+                    redirect_to '/login'
                 end
             end
         end
     end
 
+    def facebook 
+        @user = User.find_or_create_by(uid: auth['uid'].to_s) do |u|
+            u.name = auth['info']['name']
+            u.email = auth['info']['email']
+            u.password = SecureRandom.hex(10)
+        end
+       
+        session[:user_id]=@user.id
+        @user.save
+       
+        redirect_to "/users/#{@user.slug}"
+    end
+
     def destroy
         session.delete :user_id
         redirect_to '/login'
+    end
+
+    private
+
+    def auth
+        request.env['omniauth.auth']
     end
 
 end
