@@ -2,7 +2,9 @@ class Player < ApplicationRecord
     has_one_attached :player_image
 
     validates :first_name, presence: true
+
     validates :last_name, presence: true
+
     validates :sex_id, presence: true
     validates :birthdate, presence: true
     validates :feet, presence: true
@@ -11,14 +13,15 @@ class Player < ApplicationRecord
     validates :handedness_id, presence: true
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
-    validate :unique_name?
-    validate :image_valid?
     
-    belongs_to :sex
-    belongs_to :country
-    belongs_to :handedness
-    belongs_to :forehand_grip
-    belongs_to :backhand_type
+    #validate :unique_name?
+    validate :image_valid?
+    #optional to prevent double error msg
+    belongs_to :sex, optional: true
+    belongs_to :country, optional: true
+    belongs_to :handedness, optional: true
+    belongs_to :forehand_grip, optional: true
+    belongs_to :backhand_type, optional: true
 
     has_many :videos
     has_many :categories, through: :videos
@@ -28,7 +31,9 @@ class Player < ApplicationRecord
     has_many :player_users
 
     def image_valid?
-        player_image.attached?
+        if !player_image.attached?
+            errors.add(:player_image, "is not attached")
+        end
     end
 
     def slug
@@ -40,7 +45,13 @@ class Player < ApplicationRecord
     end
 
     def unique_name?
-        !Player.all.map{|player|player.fullname}.include?(fullname)
+        if Player.all.map{|player|player.fullname}.include?(fullname)
+            errors.add(:player_name, "is already in this database")
+        end
+    end
+
+    def edit_valid?
+
     end
 
 
@@ -58,7 +69,6 @@ class Player < ApplicationRecord
     end
 
 
-
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 
     scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
@@ -69,12 +79,5 @@ class Player < ApplicationRecord
 
     scope :filter_by_country, -> (country_id) {where country_id: country_id}
   
-
-
-
-    
-    
-    
-    
 
 end

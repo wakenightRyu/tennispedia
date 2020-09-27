@@ -1,11 +1,17 @@
+<%= render partial: "layouts/errors", locals: {object: @player} %>
+<!-- render the errors partial, send the @player as the 'object' -->
+
 <div class="player-form">
     <%=form_for :player do |f|%>
         <p class="input-type">First Name</p>
         <%=f.text_field :first_name, class: "input-field", placeholder: "First Name", autocomplete: "off"%> <br><br>
 
         <p class="input-type">Last Name</p>
-        <%=f.text_field :last_name, class: "input-field", placeholder: "Last Name"%> <br><br>
+        <%=f.text_field :last_name, class: "input-field", placeholder: "Last Name"%>
+        
+         <br><br>
 
+        
         <p class="input-type">Sex</p>
         <%=f.collection_select :sex_id, Sex.all, :id, :name, class: "input-field", include_blank: "Select Sex"%> <br><br>
 
@@ -17,7 +23,8 @@
 
         <p class="input-type">Height</p>
         <%=f.number_field :feet, class: "input-field-height", placeholder: "ft"%>&nbsp;'&nbsp;
-        <%=f.number_field :inches, class: "input-field-height", placeholder: "in"%>&nbsp;" <br><br>
+        <%=f.number_field :inches, class: "input-field-height", placeholder: "in"%>&nbsp;"
+        <br><br>
 
         <p class="input-type">Handedness</p>
         <%=f.collection_select :handedness_id, Handedness.all, :id, :name, class: "input-field", include_blank: "Select"%> <br><br>

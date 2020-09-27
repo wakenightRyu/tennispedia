@@ -33,12 +33,13 @@ class PlayersController < ApplicationController
     end
 
     def new
+        @player=Player.new
     end
 
     def create
         @player=Player.new(player_params)
     
-        if @player.valid? && @player.unique_name?
+        if @player.valid? 
             @player.save
             redirect_to "/players/#{@player.slug}/videos"
         else
@@ -48,8 +49,13 @@ class PlayersController < ApplicationController
 
     def update
         @player=Player.find_by_slug(params[:slug])
-        @player.update(player_params)
-        redirect_to "/players/#{@player.slug}/videos"
+
+        if @player.update(player_params)
+            redirect_to "/players/#{@player.slug}/videos"
+            flash[:message]= 'Player was successfully updated'
+        else 
+            render :edit 
+        end
     end
 
     def destroy
