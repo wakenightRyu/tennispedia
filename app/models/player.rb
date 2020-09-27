@@ -2,9 +2,7 @@ class Player < ApplicationRecord
     has_one_attached :player_image
 
     validates :first_name, presence: true
-
     validates :last_name, presence: true
-
     validates :sex_id, presence: true
     validates :birthdate, presence: true
     validates :feet, presence: true
