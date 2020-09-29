@@ -9,7 +9,7 @@ class PlayersController < ApplicationController
     end
 
     def filter
-        @players=Player
+        @players=Player.all
 
         @players=@players.filter_by_sex(params[:sex_id]) unless params[:sex_id].blank?
 
