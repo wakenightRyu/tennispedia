@@ -1,4 +1,8 @@
+<%=render 'application/header'%>
+
 <h3 class="form-header"><%="Add #{@player.fullname} Video"%></h3> 
+
+<%= render partial: "layouts/errors", locals: {object: @video} %>
 
 <div class="video-form">
     <%=form_for :video do |f|%>
@@ -15,9 +19,10 @@
                 <option value="<%=category.name%>">
             <%end%>
         </datalist> <br><br>
+        
 
         <p class="input-type">Year</p>
-        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}%> 
+        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}, include_blank: "Select Year"%> 
 
         <br><br><br>
 
