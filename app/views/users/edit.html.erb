@@ -1,0 +1,12 @@
+<%=render 'application/header'%>
+
+<h3 class="form-header">Edit Your Profile</h3>
+
+<%= render partial: "layouts/errors", locals: {object: @user} %>
+
+<div class="user-edit-form">
+    <%=render 'form'%>
+    <%=button_to "/users/#{@user.slug}", :action=>'cancel', class: "cancel-button" do %>
+        <p class="cancel">Cancel</p>
+    <%end%>
+</div> <br>

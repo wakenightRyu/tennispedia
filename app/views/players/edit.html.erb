@@ -10,3 +10,6 @@
 </div>
 
 <%= render 'form'%>
+<%=button_to "/players/#{@player.slug}/videos", :action=>'cancel', class: "cancel-player-button" do %>
+        <p class="cancel-player">Cancel</p>
+    <%end%>

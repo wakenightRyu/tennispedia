@@ -4,4 +4,8 @@
 
 <%= render partial: "layouts/errors", locals: {object: @video} %>
 
-<%=render 'form'%>
+<%=render 'form'%> <br>
+
+<%=link_to "/players/#{@player.slug}/videos/#{@video.id}/delete", :controller=>'videos', :action=>'destroy' do%>
+    <p>delete video</p>
+<%end%>

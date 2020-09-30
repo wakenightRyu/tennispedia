@@ -5,7 +5,8 @@ class User < ApplicationRecord
     validates :name, presence: true, uniqueness: true
 
     validates :email, presence: true
-
+    validates :password, presence: true
+    validates :password_confirmation, presence: true
     
     has_many :player_users
     has_many :players, through: :player_users

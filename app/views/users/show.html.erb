@@ -3,8 +3,12 @@
 <div class="user-second-header">
 
     <h1><%="#{@user.name}'s Favorite Videos"%></h1> 
+
+    <%=link_to "edit profile","/users/#{@user.slug}/edit", class: "edit-user" %>
 </div>
-    
+    <div class="flash-msg">
+    <%= flash[:message] if flash[:message]%>
+</div>
     <div class="user-videos">
         <%@user.categories.uniq.sort_by{|category| category.name}.each do |category|%>
             <h3><%=category.name.upcase%></h3>

@@ -3,3 +3,6 @@
 <h3 class="form-header">Add Player</h3>
 
 <%= render 'form'%>
+<%=button_to "/players", :action=>'cancel_new', class: "cancel-player-button" do %>
+    <p class="cancel-player">Cancel</p>
+<%end%>

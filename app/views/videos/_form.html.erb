@@ -20,7 +20,9 @@
 
         <br><br><br>
 
-        <%=f.submit 'Submit'%><br><br><br>
-        
+        <%=f.submit 'Submit'%> 
     <%end%>
+    <%=button_to "/players/#{@player.slug}/videos", :action=>'cancel', class: "cancel-video-button" do %>
+    <p class="cancel-video">Cancel</p>
+<%end%>
 </div>

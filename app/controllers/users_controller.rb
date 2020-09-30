@@ -31,12 +31,34 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit
+        @user=User.find(session[:user_id])
+        
+    end 
+
+    def update
+        @user=User.find_by_slug(params[:slug])
+
+        if @user.update(user_params)
+            flash[:message]= 'Player was successfully updated'
+            redirect_to "/users/#{@user.slug}"
+            
+        else 
+            render :edit 
+        end
+    end
+
     def remove
         @video=Video.find_by(id: params[:id])
         @player=@video.player
         @user=current_user
         @user.videos.delete(@video)
         render :show
+    end
+
+    def cancel 
+        @user=User.find_by_slug(params[:slug])
+        redirect_to "/users/#{@user.slug}"
     end
 
     private

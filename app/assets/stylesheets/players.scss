@@ -227,3 +227,15 @@ img {
 .edit-page p {
     display: inline-block;
 }
+
+.cancel-player-button {
+    position: absolute;
+    margin-top: -60px;
+    margin-left: 65px;
+    width: 70px;
+    height: 22px;
+}
+
+.cancel-player-button p.cancel-player {
+    margin-top: 0px;
+}

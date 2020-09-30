@@ -65,6 +65,16 @@ class PlayersController < ApplicationController
         @player.destroy
         redirect_to players_path
     end
+
+    def cancel
+        @player= Player.find_by_slug(params[:slug])
+        
+        redirect_to "/players/#{@player.slug}/videos"
+    end
+
+    def cancel_new
+        redirect_to "/players"
+    end
         
     private
 

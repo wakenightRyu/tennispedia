@@ -73,6 +73,18 @@ class VideosController < ApplicationController
         render :index
     end
 
+    def cancel
+        @player=Player.find_by_slug(params[:slug])
+        redirect_to "/players/#{@player.slug}/videos"
+    end
+
+    def destroy
+        @video=Video.find_by(id: params[:id])
+        @player=Player.find_by_slug(params[:slug])
+        @video.destroy
+        redirect_to "/players/#{@player.slug}/videos"
+    end
+
     private
 
     def video_params
