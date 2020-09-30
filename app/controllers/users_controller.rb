@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
     def show
-
         @user=User.find(session[:user_id])
+
     end
 
     def new
@@ -28,6 +28,13 @@ class UsersController < ApplicationController
         else
             render :new
         end
+    end
+
+    def remove
+        @video=Video.find_by(id: params[:id])
+        @user=User.find_by_slug(params[:slug])
+        @user.videos.delete(@video)
+        render :show
     end
 
     private

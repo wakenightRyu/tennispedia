@@ -1,14 +1,13 @@
 class Video < ApplicationRecord
     validates :link, presence: true, uniqueness: true
     validates :category_name, presence: true
-    validates :year, presence: true
+    validates :year, presence: true#, #format: {with: /(19|20)\d{2}/i }
     validate :youtube_link?
-    
 
     belongs_to :player, optional: true
     belongs_to :category, optional: true
-    has_many :users, through: :user_videos
     has_many :user_videos
+    has_many :users, through: :user_videos
     accepts_nested_attributes_for :category
 
     def category_name=(name)
@@ -36,6 +35,8 @@ class Video < ApplicationRecord
             end
         end
     end
+
+    
 
 end    
     

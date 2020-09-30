@@ -84,5 +84,9 @@ class PlayerStroke
     belongs_to :player
     belongs_to :stroke
 
+class UserVideo
+    belongs_to :user
+    belongs_to :video
+
 
 

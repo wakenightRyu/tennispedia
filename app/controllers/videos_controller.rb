@@ -19,7 +19,6 @@ class VideosController < ApplicationController
             @video.year=params[:video][:year].to_i
         end
         
-        
         if @video.valid?
             @video.player = @player
             @video.year=params[:video][:year].to_i
@@ -35,7 +34,33 @@ class VideosController < ApplicationController
         else 
             render :new
         end 
-        
+    end
+
+    def edit 
+        @player=Player.find_by_slug(params[:slug])
+        @video=Video.find_by(id: params[:id])
+    end
+
+    def update 
+        @video=Video.find_by(id: params[:id])
+        @player=Player.find_by_slug(params[:slug])
+       
+
+        if @video.update(video_params)
+            
+            redirect_to "/players/#{@player.slug}/videos"
+            flash[:message]= 'Video was successfully updated'
+        else 
+            render :edit 
+        end
+    end
+
+    def favorite 
+        @video=Video.find_by(id: params[:id])
+        @player=Player.find_by_slug(params[:slug])
+        @user=current_user
+        @user.videos << @video
+        render :index
     end
 
     private

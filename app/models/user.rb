@@ -7,11 +7,12 @@ class User < ApplicationRecord
     validates :email, presence: true
 
     
-
-    has_many :players, through: :player_users
     has_many :player_users
-    has_many :videos, through: :user_videos
+    has_many :players, through: :player_users
+
     has_many :user_videos
+    has_many :videos, through: :user_videos
+    has_many :categories, through: :videos
 
     def slug
         name.downcase.split.join("-")

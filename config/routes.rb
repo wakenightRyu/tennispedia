@@ -38,6 +38,14 @@ Rails.application.routes.draw do
 
   post '/players/:slug/videos/new' => 'videos#create'
 
+  get '/players/:slug/videos/:id/edit' => 'videos#edit'
+
+  post '/players/:slug/videos/:id/edit' => 'videos#update'
+
+  post '/players/:slug/videos/:id/favorite' => 'videos#favorite'
+
+  post '/users/:slug/videos/:id/remove' => 'users#remove'
+
   get '/players/:slug/matches' => 'matches#index'
 
   get '/logout' => 'sessions#destroy'

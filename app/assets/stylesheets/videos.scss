@@ -6,3 +6,24 @@
     background-color: red;
     display: table;
   }
+
+.videos .individual-card p.video-year {
+    float: left;
+}
+
+.videos .individual-card p.edit {
+    display: inline-block;
+    margin-left: 40px;
+    font-size: 13.5px;
+  }
+
+.individual-card button {
+    position: absolute;
+    margin-top: -32px;
+    margin-left: 329px;
+    height: 25px;
+} 
+
+p.edit {
+    font-size: 13px;
+}
