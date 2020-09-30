@@ -1,6 +1,12 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+  }
+
 .user-content {
     margin-top: 66px;
 }

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
             @user=current_user
             redirect_to "/users/#{@user.slug}"
         else
+            @user=User.new
             render 'new'
         end
     end

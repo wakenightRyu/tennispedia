@@ -73,3 +73,7 @@
     color: rgb(200,200,200);
 }
 
+.flash-msg {
+    color: red;
+    position: absolute;
+}
