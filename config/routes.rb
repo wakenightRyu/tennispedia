@@ -42,7 +42,15 @@ Rails.application.routes.draw do
 
   post '/players/:slug/videos/:id/edit' => 'videos#update'
 
+  get '/players/:slug/videos/:id/favorite' => 'videos#favorite'
+
   post '/players/:slug/videos/:id/favorite' => 'videos#favorite'
+
+  get '/players/:slug/videos/:id/remove' => 'videos#remove'
+
+  post '/players/:slug/videos/:id/remove' => 'videos#remove'
+
+  get '/users/:slug/videos/:id/remove' => 'users#remove'
 
   post '/users/:slug/videos/:id/remove' => 'users#remove'
 

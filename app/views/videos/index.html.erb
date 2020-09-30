@@ -14,7 +14,7 @@
 </div>
 
     <div class="videos">
-        <%@player.categories.uniq.each do |category|%>
+        <%@player.categories.uniq.sort_by{|category| category.name}.each do |category|%>
             
             <h3><%=category.name.upcase%></h3>
             <div class="player-category-videos">
@@ -28,8 +28,14 @@
                             <p class="edit"><%=link_to "edit video", "/players/#{@player.slug}/videos/#{video.id}/edit"%></p>
                         </div><!--captions-->
                         
-                        <%=button_to "/players/#{@player.slug}/videos/#{video.id}/favorite", :action=>'favorite' do %>
-                            <p class="favorite">Favorite</p>
+                        <%if video.users.include?(@user)%>
+                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/remove", class: "favorited-button", :action=>'remove' do %>
+                                <p class="favorited">Favorited</p>
+                            <%end%>
+                        <%else%>
+                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/favorite", :action=>'favorite' do %>
+                                <p class="favorite-video">Favorite</p>
+                            <%end%>
                         <%end%>
                     </div>
                 <%end%> 

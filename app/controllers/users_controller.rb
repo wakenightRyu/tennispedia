@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
     def show
         @user=User.find(session[:user_id])
-
+       
     end
 
     def new
@@ -32,7 +32,8 @@ class UsersController < ApplicationController
 
     def remove
         @video=Video.find_by(id: params[:id])
-        @user=User.find_by_slug(params[:slug])
+        @player=@video.player
+        @user=current_user
         @user.videos.delete(@video)
         render :show
     end

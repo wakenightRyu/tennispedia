@@ -1,6 +1,11 @@
 // Place all the styles related to the Videos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.video-header {
+    z-index: 10;
+}
+
 .field_with_errors {
     padding: 2px;
     background-color: red;
@@ -20,10 +25,31 @@
 .individual-card button {
     position: absolute;
     margin-top: -32px;
-    margin-left: 329px;
+    margin-left: 314px;
     height: 25px;
+    width: 75px;
+    
 } 
 
 p.edit {
     font-size: 13px;
 }
+
+
+button.favorited-button {
+    background-color: green;
+}
+
+button p.favorited {
+    color: white;
+}
+
+.user-videos {
+    text-align: left;
+}
+
+.individual-card img {
+    width: 240px;
+    display: inline-block;
+}
+

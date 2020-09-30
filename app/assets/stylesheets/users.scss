@@ -4,3 +4,49 @@
 .user-content {
     margin-top: 66px;
 }
+
+.u-captions p{
+    display: inline-block;
+}
+
+.u-video-year {
+    margin-left: 20px;
+}
+
+.u-edit {
+    margin-left: 20px;
+    
+}
+
+
+
+.u-button {
+    position: relative;
+    margin-top: -5px;
+    margin-right: 50px;
+}
+
+.user-second-header {
+    position:fixed;
+    width: 100%;
+    margin-left: -8px;
+    margin-top: 36px;
+    padding-top: 20px;
+    height: 56px;
+    border-bottom: 1px solid gray;
+    background-color: white;
+    z-index: 10;
+}
+
+.user-second-header h1 {
+    float: left;
+    margin-top: 1px;
+    margin-left: 8px;
+    font-size: 30px;
+}
+
+.user-videos {
+    position: absolute;
+    margin-top: 130px;
+}
+

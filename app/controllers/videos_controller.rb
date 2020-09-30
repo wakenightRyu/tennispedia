@@ -2,6 +2,7 @@ class VideosController < ApplicationController
 
     def index
         @player=Player.find_by_slug(params[:slug])
+        @user=current_user
     end
 
     def new
@@ -59,7 +60,16 @@ class VideosController < ApplicationController
         @video=Video.find_by(id: params[:id])
         @player=Player.find_by_slug(params[:slug])
         @user=current_user
-        @user.videos << @video
+        @user.videos<<(@video)
+        render :index
+        flash[:message]= 'This video has been added to your favorites'
+    end
+
+    def remove
+        @video=Video.find_by(id: params[:id])
+        @player=@video.player
+        @user=current_user
+        @user.videos.delete(@video)
         render :index
     end
 
