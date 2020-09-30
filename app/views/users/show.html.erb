@@ -15,7 +15,7 @@
                         <iframe width="426" height="240" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         <div class="captions"> 
-                            <p class="video-player"><%=video.player.fullname%></p>
+                            <p class="video-player"><%=link_to video.player.fullname, "/players/#{video.player.slug}/videos"%></p>
                             
                             <p class="video-year"><%=video.year%></p>
 
