@@ -71,5 +71,8 @@ class Player < ApplicationRecord
 
     scope :filter_by_country, -> (country_id) {where country_id: country_id}
   
+    scope :filter_by_first_name, -> (first_name){where first_name: first_name.capitalize}
+
+    scope :filter_by_last_name, -> (last_name){where last_name: last_name.capitalize}
 
 end

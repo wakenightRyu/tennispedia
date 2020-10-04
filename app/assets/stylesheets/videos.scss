@@ -12,6 +12,8 @@
     display: table;
   }
 
+
+
 .videos .individual-card p.video-year {
     float: left;
 }
@@ -25,11 +27,13 @@
 .individual-card button {
     position: absolute;
     margin-top: -32px;
-    margin-left: 314px;
+    margin-left: 382px;
     height: 25px;
     width: 75px;
-    
 } 
+
+
+    
 
 p.edit {
     font-size: 13px;
@@ -48,9 +52,21 @@ button p.favorited {
     text-align: left;
 }
 
+.player-category-videos {
+    margin-bottom: -8px;
+    
+}
+
 .individual-card img {
     width: 240px;
     display: inline-block;
+}
+
+.videos h4 {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 8px;
+    margin-bottom: -10px;
 }
 
 /* VIDEO/EDIT */

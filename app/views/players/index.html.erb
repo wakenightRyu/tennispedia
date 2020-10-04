@@ -26,10 +26,20 @@
             <%=submit_tag("Filter")%>
         <%end%> <br><br>
     </div><!--filter-input-->
+
+    <div class="name-filter filter-input ">
+        <%=form_tag players_search_path, :method=> 'post', :html=>{:class=>'form-inline'}, class: "search-bar" do %>
+            <%=text_field_tag :first_name, params[:first_name], placeholder: "First Name"%>
+
+            <%=text_field_tag :last_name, params[:last_name], placeholder: "Last Name"%>
+            <%=submit_tag "Search", class:"search-input"%>
+        <%end%>
+    </div>
 </div><!--index-second-header-->
+ <div class="search-separator"></div>
 
 <div class="players-content">
-    <h4><i><%=@players.count%> players found </i></h4><br><br>
+    <h4><i><%=@players.count%> Players  </i></h4><br><br>
     <%@players.sort_by{|p| p.first_name}.each do |player|%>
         <div class="player-card">
             <%=link_to "/players/#{player.slug}/videos" do%>

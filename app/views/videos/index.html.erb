@@ -14,13 +14,14 @@
 </div>
 
     <div class="videos">
+        <h4><i><%=@player.videos.count%> Videos  </i></h4>
         <%@player.categories.uniq.sort_by{|category| category.name}.each do |category|%>
             
             <h3><%=category.name.upcase%></h3>
             <div class="player-category-videos">
                 <%category.videos.select{|video| video.player_id==@player.id}.sort_by{|video| video.year}.reverse.each do |video|%>
                     <div class="individual-card">
-                        <iframe width="426" height="240" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         <div class="captions"> 
                             <p class="video-year"><%=video.year%></p>
@@ -39,7 +40,7 @@
                         <%end%>
                     </div>
                 <%end%> 
-            </div> <br>
+            </div> <!--player-category-videos-->
         <%end%>
     </div>
 

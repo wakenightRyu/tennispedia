@@ -25,6 +25,16 @@ class PlayersController < ApplicationController
         render 'index'
     end
 
+    def search
+        
+        @players=Player.all
+
+        @players=@players.filter_by_first_name(params[:first_name]) unless params[:first_name].blank?
+
+        @players=@players.filter_by_last_name(params[:last_name]) unless params[:last_name].blank?
+        render 'index'
+    end 
+
     def match
         @player=Player.find_by_slug(params[:slug])
     end

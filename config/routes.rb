@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   post '/players/filter' => 'players#filter'
 
+  post '/players/search' => 'players#search'
+
   get '/players' => 'players#index'
 
   post '/players' => 'players#index'

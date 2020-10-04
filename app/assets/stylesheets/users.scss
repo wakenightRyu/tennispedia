@@ -53,7 +53,7 @@
 
 .user-videos {
     position: absolute;
-    margin-top: 130px;
+    margin-top: 148px;
 }
 
 .user-edit-form {
@@ -78,7 +78,14 @@ a.edit-user {
     margin-top: 0px;
 }
 
-p.no-videos {
+p.videos-count {
     position: absolute;
     margin-top: 150px;
+}
+
+h4.videos-count {
+    position: absolute;
+    margin-top: 138px;
+    font-weight: 400;
+    font-size: 15px;
 }
