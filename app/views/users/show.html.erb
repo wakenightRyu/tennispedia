@@ -9,6 +9,9 @@
     <div class="flash-msg">
     <%= flash[:message] if flash[:message]%>
 </div>
+<%if @user.videos.blank?%>
+    <p class="no-videos">You do not have any videos favorited yet. Browse <%=link_to "players","/players"%>.</p>
+<%end%>
     <div class="user-videos">
         <%@user.categories.uniq.sort_by{|category| category.name}.each do |category|%>
             <h3><%=category.name.upcase%></h3>
