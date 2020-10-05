@@ -51,6 +51,10 @@
     margin-top: -13px;
 }
 
+.fixed-bio img {
+    border-radius: 6px;
+}
+
 .player-details {
     margin-top: -9px;
     margin-bottom: 22px;
@@ -203,6 +207,7 @@ img {
 
 .player-index-img {
     width: 200px;
+    border-radius: 6px;
 }
 
 .player-card img.index-flag {
