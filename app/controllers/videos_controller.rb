@@ -55,6 +55,7 @@ class VideosController < ApplicationController
                 
             else 
                 flash[:message]= 'A year must be selected'
+                @video.year=params[:video][:year]
                 render :edit 
             end
         else 
@@ -69,7 +70,6 @@ class VideosController < ApplicationController
 
         @user.videos<<(@video)
         render :index
-        flash[:message]= 'This video has been added to your favorites'
     end
 
     def remove

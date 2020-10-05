@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post '/players' => 'players#index'
   
   get '/players/new' => 'players#new'
+  
   post '/players/new' => 'players#create'
 
   get '/players/:slug/videos' => 'videos#index'
