@@ -45,14 +45,20 @@ class VideosController < ApplicationController
     def update 
         @video=Video.find_by(id: params[:id])
         @player=Player.find_by_slug(params[:slug])
-       
 
         if @video.update(video_params)
+            if params[:video][:year]!="" 
+                @video.year=params[:video][:year].to_i
             
-            redirect_to "/players/#{@player.slug}/videos"
-            flash[:message]= 'Video was successfully updated'
+                @video.save
+                redirect_to "/players/#{@player.slug}/videos"
+                
+            else 
+                flash[:message]= 'A year must be selected'
+                render :edit 
+            end
         else 
-            render :edit 
+            render :edit
         end
     end
 
@@ -60,6 +66,7 @@ class VideosController < ApplicationController
         @video=Video.find_by(id: params[:id])
         @player=Player.find_by_slug(params[:slug])
         @user=current_user
+
         @user.videos<<(@video)
         render :index
         flash[:message]= 'This video has been added to your favorites'
@@ -88,7 +95,7 @@ class VideosController < ApplicationController
     private
 
     def video_params
-        params.require(:video).permit(:link, :category_name, :year)
+        params.require(:video).permit(:link, :category_name)
     end
 
 end

@@ -4,6 +4,10 @@
 
 <%= render partial: "layouts/errors", locals: {object: @video} %>
 
+<div class="flash-msg-videos">
+    <%= flash[:message] if flash[:message]%>
+</div>
+
 <%=render 'form'%> <br>
 
 <%=link_to "/players/#{@player.slug}/videos/#{@video.id}/delete", :controller=>'videos', :action=>'destroy' do%>
