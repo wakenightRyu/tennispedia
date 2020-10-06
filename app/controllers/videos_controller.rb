@@ -24,9 +24,9 @@ class VideosController < ApplicationController
             @video.player = @player
             @video.year=params[:video][:year].to_i
             
-            category = Category.find_or_create_by(name: params[:video][:category_name])
+            @video.category = Category.find_or_create_by(name: params[:video][:category_name])
             
-            @video.category = category
+            
 
             @video.save
             @player.videos <<@video
@@ -55,7 +55,7 @@ class VideosController < ApplicationController
                 
             else 
                 flash[:message]= 'A year must be selected'
-                @video.year=params[:video][:year]
+                @video.year=params[:video][:year] #when not updating beecause selected 'Select Year', stores 'select year' as @video.year to render :edit
                 render :edit 
             end
         else 
