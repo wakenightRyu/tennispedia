@@ -21,13 +21,13 @@
         
         <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
             <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
-        <%end%> <br><br>
+        <%end%> 
             
         <datalist id="opponents_autocomplete">
             <%Player.all.sort{|a,b| a.fullname <=> b.fullname}.each do |player|%>
                 <option value="<%=player.fullname%>">
             <%end%>
-        </datalist><br><br> 
+        </datalist> <br><br>
         
 
         <p class="input-type">Year</p>
