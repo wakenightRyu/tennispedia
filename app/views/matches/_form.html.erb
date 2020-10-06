@@ -1,0 +1,43 @@
+<div class="video-form">
+    <%=form_for :match do |f|%>
+        <p class="input-type">Match Link</p>
+        <%=f.text_field :link, class: "input-field", placeholder: "Video Link"%> <br><br>
+
+        <p class="input-type">Tournament</p>
+        <%=f.text_field :tournament_name, list: "tournaments_autocomplete", placeholder: "Select Tournament"%>
+        <datalist id="tournaments_autocomplete">
+            <%Tournament.all.sort{|a,b| a.name <=> b.name}.each do |tournament|%>
+                <option value="<%=tournament.name%>">
+            <%end%>
+        </datalist> <br><br>
+
+        <p class="input-type">Opponent #1</p>
+        
+        <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
+            <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
+        <%end%> <br><br>
+
+        <p class="input-type">Opponent #2</p>
+        
+        <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
+            <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
+        <%end%> <br><br>
+            
+        <datalist id="opponents_autocomplete">
+            <%Player.all.sort{|a,b| a.fullname <=> b.fullname}.each do |player|%>
+                <option value="<%=player.fullname%>">
+            <%end%>
+        </datalist><br><br> 
+        
+
+        <p class="input-type">Year</p>
+        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}, include_blank: "Select Year"%> 
+
+        <br><br><br>
+
+        <%=f.submit 'Submit'%> 
+    <%end%>
+    <%=button_to "/players/#{@player.slug}/matches", :action=>'cancel', class: "cancel-video-button" do %>
+        <p class="cancel-video">Cancel</p>
+    <%end%>
+</div>

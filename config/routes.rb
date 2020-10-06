@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/players/:slug/videos' => 'videos#index'
 
+  get '/players/:slug/matches' => 'matches#index'
+
   get '/players/:slug/edit' => 'players#edit'
 
   post '/players/:slug/edit' => 'players#update'
@@ -40,6 +42,10 @@ Rails.application.routes.draw do
   get '/players/:slug/videos/new' => 'videos#new'
 
   post '/players/:slug/videos/new' => 'videos#create'
+
+  get '/players/:slug/matches/new' => 'matches#new'
+
+  post '/players/:slug/matches/new' => 'matches#create'
 
   get '/players/:slug/videos/:id/delete' => 'videos#destroy'
 

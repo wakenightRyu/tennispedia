@@ -7,7 +7,36 @@
 
     <%=link_to "Matches", "/players/#{@player.slug}/matches", class: "second-link current-page" %>
 
-    <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
+    <%=link_to "/players/#{@player.slug}/matches/new", :controller=>'videos', :action=>'new' do%>
         + Add Match
     <%end%>
 </div>
+
+<div class="videos">
+        <h4><i><%=@player.matches.count%> Matches  </i></h4>
+        <%@player.matches.sort_by{|match| match.year}.uniq.each do |year|%>
+            
+            <h3><%=year%></h3>
+            <div class="player-category-videos">
+                <%year.matches.each do |match|%>
+                    <div class="individual-card">
+                        <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=match.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                        <div class="captions"> 
+                            
+                        </div><!--captions-->
+                        
+                        <%if match.users.include?(@user)%>
+                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/remove", class: "favorited-button", :action=>'remove' do %>
+                                <p class="favorited">Favorited</p>
+                            <%end%>
+                        <%else%>
+                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/favorite", :action=>'favorite' do %>
+                                <p class="favorite-video">Favorite</p>
+                            <%end%>
+                        <%end%>
+                    </div>
+                <%end%> 
+            </div> <!--player-category-videos-->
+        <%end%>
+    </div>

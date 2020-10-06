@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_220251) do
+ActiveRecord::Schema.define(version: 2020_10_06_092426) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,11 +65,31 @@ ActiveRecord::Schema.define(version: 2020_09_29_220251) do
 
   create_table "matches", force: :cascade do |t|
     t.string "link"
-    t.string "tournament_name"
+    t.integer "tournament_id"
     t.date "year"
     t.integer "round_id"
     t.integer "surface_id"
-    t.integer "type_id"
+    t.integer "format_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "opponent_matches", force: :cascade do |t|
+    t.integer "opponent_id"
+    t.integer "match_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "opponents", force: :cascade do |t|
+    t.string "fullname"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "player_matches", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "match_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -90,6 +110,12 @@ ActiveRecord::Schema.define(version: 2020_09_29_220251) do
   end
 
   create_table "sexes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -117,6 +143,11 @@ ActiveRecord::Schema.define(version: 2020_09_29_220251) do
     t.date "year"
     t.integer "player_id"
     t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "years", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

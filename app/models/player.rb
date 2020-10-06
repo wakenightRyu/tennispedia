@@ -22,8 +22,8 @@ class Player < ApplicationRecord
 
     has_many :videos
     has_many :categories, through: :videos
-    has_many :matches, through: :player_matches
     has_many :player_matches
+    has_many :matches, through: :player_matches
     has_many :users, through: :player_users
     has_many :player_users
 

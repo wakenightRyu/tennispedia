@@ -1,7 +1,7 @@
 class Video < ApplicationRecord
     validates :link, presence: true, uniqueness: true
     validates :category_name, presence: true
-    validates :year, presence: true#, #format: {with: /(19|20)\d{2}/i }
+    validates :year, presence: true
     validate :youtube_link?
 
     belongs_to :player, optional: true

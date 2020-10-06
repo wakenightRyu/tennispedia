@@ -26,8 +26,6 @@ class VideosController < ApplicationController
             
             @video.category = Category.find_or_create_by(name: params[:video][:category_name])
             
-            
-
             @video.save
             @player.videos <<@video
 
