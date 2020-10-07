@@ -1,14 +1,15 @@
 class Match < ApplicationRecord
     validates :link, presence: true, uniqueness: true
     validates :tournament_name, presence: true
-    validates :year, presence: true
+    validates :round_id, presence: true
+    validates :opponents, presence: true
     validate :youtube_link?
     
     belongs_to :tournament
     belongs_to :surface
     belongs_to :round
     belongs_to :format
-    belongs_to :year
+    
     has_one :partner
     has_many :opponent_matches
     has_many :opponents, through: :opponent_matches
@@ -34,6 +35,18 @@ class Match < ApplicationRecord
         self.tournament.name
     end
 
+    
+
+    def youtube_url_parse
+        remove="https://www.youtube.com/watch?v="
+        self.link.slice! remove
+        self.link
+    end
+
+    def prefix
+        "https://www.youtube.com/watch?v="
+    end
+
     def youtube_link?
         unless link.empty?
             if !link.start_with?(prefix)
@@ -42,9 +55,7 @@ class Match < ApplicationRecord
         end
     end
 
-    def prefix
-        "https://www.youtube.com/watch?v="
-    end
+    
 
  
 end

@@ -3,6 +3,17 @@
         <p class="input-type">Match Link</p>
         <%=f.text_field :link, class: "input-field", placeholder: "Video Link"%> <br><br>
 
+        <!--<p class="input-type">Opponent </p>
+        
+        <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
+            <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
+        <%end%> 
+        <datalist id="opponents_autocomplete">
+            <%Player.all.sort{|a,b| a.fullname <=> b.fullname}.each do |player|%>
+                <option value="<%=player.fullname%>">
+            <%end%>
+        </datalist> <br><br>-->
+
         <p class="input-type">Tournament</p>
         <%=f.text_field :tournament_name, list: "tournaments_autocomplete", placeholder: "Select Tournament"%>
         <datalist id="tournaments_autocomplete">
@@ -11,27 +22,12 @@
             <%end%>
         </datalist> <br><br>
 
-        <p class="input-type">Opponent #1</p>
-        
-        <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
-            <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
-        <%end%> <br><br>
+        <p class="input-type">Round</p>
+        <%=f.collection_select :round_id, Round.all, :id, :name, class: "input-field", include_blank: "Select Round"%> <br><br>
 
-        <p class="input-type">Opponent #2</p>
         
-        <%=f.fields_for :opponents, @match.opponents.build do |opponents_fields|%>
-            <%=opponents_fields.text_field  :fullname, list: "opponents_autocomplete",placeholder: "Player Name"%>
-        <%end%> 
-            
-        <datalist id="opponents_autocomplete">
-            <%Player.all.sort{|a,b| a.fullname <=> b.fullname}.each do |player|%>
-                <option value="<%=player.fullname%>">
-            <%end%>
-        </datalist> <br><br>
-        
-
         <p class="input-type">Year</p>
-        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}, include_blank: "Select Year"%> 
+        <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}, include_blank: "Select Year"%>
 
         <br><br><br>
 

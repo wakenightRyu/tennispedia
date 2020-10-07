@@ -14,7 +14,6 @@
             <%end%>
         </datalist> <br><br>
         
-
         <p class="input-type">Year</p>
         <%=f.select :year, (Date.today.year-30 .. Date.today.year).sort{|a,b| b<=>a}, include_blank: "Select Year"%> 
 
