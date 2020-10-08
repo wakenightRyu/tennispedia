@@ -10,11 +10,16 @@
     </div>
 
     <div class=player-details>
-        <p>Age: <%=@player.age%></p>
-        <p>Height: <%=@player.feet%>'<%=@player.inches%>"</p> 
-        <p><%=@player.handedness.name%></p>
-        <p>Forehand: <%=@player.forehand_grip.name%></p>
-        <p>Backhand: <%=@player.backhand_type.name%></p>
+        <div class="first_row">
+            <p><b>Age</b>: &nbsp;<%=@player.age%> &nbsp; | &nbsp;</p>
+            <p><b>Height</b>: &nbsp;<%=@player.feet%>'<%=@player.inches%>" </p> 
+        </div>
+        <p><b>Handedness</b>: &nbsp;<%=@player.handedness.name%> </p>
+        <p><b>Forehand</b>: &nbsp;<%=@player.forehand_grip.name%></p>
+        <p><b>Backhand</b>: &nbsp;<%=@player.backhand_type.name%></p>
+        <p><b>Play Style</b>:&nbsp;<%@player.styles.each do |style|%>
+            <%=style.name%>
+        <%end%></p>
     </div>
 
     <%=link_to "/players/#{@player.slug}/edit" do%>

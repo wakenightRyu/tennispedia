@@ -35,6 +35,13 @@
         <p class="input-type">Backhand Type</p>
         <%=f.collection_select :backhand_type_id, BackhandType.all, :id, :name, class: "input-field", include_blank: "Select Backhand"%> <br><br>
 
+        <p class="input-type">Play Style</p>
+        <%=f.collection_check_boxes :style_ids, Style.all, :id, :name, include_blank: ""%><br><br>
+
+        <%=f.fields_for :styles, @player.styles.build do |styles_fields|%>
+            <%=styles_fields.text_field :name, placeholder: "Add Play Style"%>
+        <%end%> <br><br>
+
         <p class="input-type">Player Photo</p>
         <%=f.file_field :player_image, class: "image-upload"%>
         

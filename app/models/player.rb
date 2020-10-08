@@ -25,7 +25,16 @@ class Player < ApplicationRecord
     has_many :player_matches
     has_many :matches, through: :player_matches
     has_many :users, through: :player_users
-    has_many :player_users
+    has_many :player_styles
+    has_many :styles, through: :player_styles
+    accepts_nested_attributes_for :styles
+
+    def styles_attributes=(style_attributes)
+        style_attributes.values.each do |style_attribute|
+            style = Style.find_or_create_by(style_attribute)
+            self.styles << style
+        end
+    end
 
     def image_valid?
         if !player_image.attached?

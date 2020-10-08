@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_07_060558) do
+ActiveRecord::Schema.define(version: 2020_10_08_180401) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -95,6 +95,13 @@ ActiveRecord::Schema.define(version: 2020_10_07_060558) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "player_styles", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "style_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -117,6 +124,12 @@ ActiveRecord::Schema.define(version: 2020_10_07_060558) do
   end
 
   create_table "sexes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "styles", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

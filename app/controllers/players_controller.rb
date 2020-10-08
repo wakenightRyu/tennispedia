@@ -48,6 +48,7 @@ class PlayersController < ApplicationController
     end
 
     def create
+      
         @player=Player.new(player_params)
     
         if @player.valid? 
@@ -60,6 +61,8 @@ class PlayersController < ApplicationController
 
     def update
         @player=Player.find_by_slug(params[:slug])
+
+        byebug
 
         if @player.update(player_params)
             redirect_to "/players/#{@player.slug}/videos"
@@ -89,11 +92,9 @@ class PlayersController < ApplicationController
     private
 
     def player_params
-        params.require(:player).permit(:player_image, :first_name, :last_name, :sex_id, :birthdate, :country_id, :feet, :inches, :handedness_id, :forehand_grip_id, :backhand_type_id)
+        params.require(:player).permit(:player_image, :first_name, :last_name, :sex_id, :birthdate, :country_id, :feet, :inches, :handedness_id, :forehand_grip_id, :backhand_type_id, style_ids:[], styles_attributes:[:name])
     end
 
-    def filtering_params(params)
-        params.slice(:forehand, :backhand, :country, :sex)
-    end
+    
 
 end
