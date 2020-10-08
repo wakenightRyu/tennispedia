@@ -62,9 +62,13 @@ class PlayersController < ApplicationController
     def update
         @player=Player.find_by_slug(params[:slug])
 
-        byebug
+        
 
         if @player.update(player_params)
+            if params[:player][:styles][:name].present?
+                @style=Style.find_or_create_by(name: params[:player][:styles][:name])
+                @player.styles << @style
+            end
             redirect_to "/players/#{@player.slug}/videos"
             flash[:message]= 'Player was successfully updated'
         else 
