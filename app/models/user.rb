@@ -7,9 +7,6 @@ class User < ApplicationRecord
     validates_format_of :name, :with => /\A[a-zA-Z]+\z/
     
     belongs_to :admin_status, optional: true
-    has_many :player_users
-    has_many :players, through: :player_users
-
     has_many :user_videos
     has_many :videos, through: :user_videos
     has_many :categories, through: :videos
@@ -21,12 +18,5 @@ class User < ApplicationRecord
     def self.find_by_slug(slug) #use self because Class method, not instance variable
         self.all.find{|user| user.slug == slug}
     end
-
-    
-
-
-
-
-
 
 end
