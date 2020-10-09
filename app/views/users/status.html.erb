@@ -1,0 +1,13 @@
+<%=render 'application/header'%>
+
+<div class="users-statuses">
+    <%=form_tag ("/users/status", :method=> 'post') do%>
+        <%@users.each do |user|%>
+            <div class="admin-status">
+                <%=user.name%>
+                <%=select_tag :admin_status_id,  options_for_select(AdminStatus.all.collect{|f| [f.name, f.id]}, selected: params[:admin_status_id]), :include_blank => 'Admin Status'%>
+            </div>
+        <%end%>
+    <%=submit_tag("Save")%>
+    <%end%>
+</div>

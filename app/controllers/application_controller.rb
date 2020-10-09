@@ -12,16 +12,10 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def youtube_url_parse
-        remove="https://www.youtube.com/watch?v="
-        self.link.slice! remove
-        self.link
+    def require_login
+        redirect_to '/login' unless session.include? :user_id 
     end
 
-    def prefix
-        "https://www.youtube.com/watch?v="
-    end
-
-
+    
 
 end

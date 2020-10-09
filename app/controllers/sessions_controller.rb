@@ -47,6 +47,7 @@ class SessionsController < ApplicationController
         redirect_to '/login'
     end
 
+
     private
 
     def auth

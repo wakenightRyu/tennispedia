@@ -8,6 +8,7 @@ class User < ApplicationRecord
     validates :password, presence: true
     validates :password_confirmation, presence: true
     
+    belongs_to :admin_status, optional: true
     has_many :player_users
     has_many :players, through: :player_users
 

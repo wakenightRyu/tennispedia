@@ -17,7 +17,7 @@
         <p><b>Handedness</b>: &nbsp;<%=@player.handedness.name%> </p>
         <p><b>Forehand</b>: &nbsp;<%=@player.forehand_grip.name%></p>
         <p><b>Backhand</b>: &nbsp;<%=@player.backhand_type.name%></p>
-        <p><b>Play Style</b>:&nbsp; <%=@player.styles.uniq.map {|style| style.name}.join(", ")%>
+        <p><b>Play Style</b>:&nbsp; <%=@player.styles.uniq.map {|style| style.name}.join(", ")%></p>
     </div>
 
     <%=link_to "/players/#{@player.slug}/edit" do%>

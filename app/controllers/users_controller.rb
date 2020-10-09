@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :require_login
 
     def show
         @user=User.find(session[:user_id])
@@ -60,6 +61,8 @@ class UsersController < ApplicationController
         @user=User.find_by_slug(params[:slug])
         redirect_to "/users/#{@user.slug}"
     end
+
+    
 
     private
 

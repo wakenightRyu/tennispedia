@@ -1,4 +1,5 @@
 class VideosController < ApplicationController
+    before_action :require_login
 
     def index
         @player=Player.find_by_slug(params[:slug])
