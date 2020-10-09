@@ -10,10 +10,8 @@ class Player < ApplicationRecord
     validates :handedness_id, presence: true
     validates :forehand_grip_id, presence: true
     validates :backhand_type_id, presence: true
-    
-    #validate :unique_name?
     validate :image_valid?
-    #optional to prevent double error msg
+    
     belongs_to :sex, optional: true
     belongs_to :country, optional: true
     belongs_to :handedness, optional: true
@@ -68,15 +66,6 @@ class Player < ApplicationRecord
     def video_count
         self.videos.count
     end
-
-    def find_player
-        @player=Player.find_by_slug(params[:slug])
-    end 
-
-    def all_players
-        @players=Player.all
-    end
-
 
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 

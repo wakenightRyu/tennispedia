@@ -36,9 +36,7 @@ class Video < ApplicationRecord
             end
         end
     end
-
     
-
 end    
     
 
