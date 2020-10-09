@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
 
     def new
-        if logged_in?
-            @user = current_user
+        if current_user
             redirect_to "/users/#{@user.slug}"
         else
             @user=User.new
@@ -22,8 +21,7 @@ class SessionsController < ApplicationController
                 flash[:message] = "Invalid password. Please try again."
                 render 'new'
             end
-        else
-                
+        else  
             flash[:message] = "This user name does not exist."
             render 'new'
         end
@@ -35,10 +33,8 @@ class SessionsController < ApplicationController
             u.email = auth['info']['email']
             u.password = SecureRandom.hex(10)
         end
-       
         session[:user_id]=@user.id
         @user.save
-       
         redirect_to "/users/#{@user.slug}"
     end
 

@@ -1,17 +1,16 @@
 class UserVideosController < ApplicationController
 
     def comment
-        @user=current_user
-        @video=Video.find_by(id: params[:id])
-        @user_video=UserVideo.all.find_by(user_id: @user.id, video_id: @video.id) 
+        current_user
+        find_video
+        find_user_video 
     end
 
     def update 
-        @user=current_user
-        @video=Video.find_by(id: params[:id])
-        @user_video=UserVideo.all.find_by(user_id: @user.id, video_id: @video.id)
+        current_user
+        find_video
+        find_user_video
         @user_video.comment=params[:user_video][:comment]
-        
         if @user_video.update(user_video_params)
             render :comment 
         end

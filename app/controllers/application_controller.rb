@@ -28,4 +28,8 @@ class ApplicationController < ActionController::Base
         @video=Video.find_by(id: params[:id])
     end 
 
+    def find_user_video
+        @user_video=UserVideo.all.find_by(user_id: @user.id, video_id: @video.id)
+    end 
+
 end
