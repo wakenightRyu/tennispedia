@@ -29,14 +29,13 @@
                             <p class="comment"><%=link_to "Comment", "/users/#{@user.slug}/videos/#{video.id}/comment"%></p>
                             <p class="u-edit"><%=link_to "edit video", "/players/#{video.player.slug}/videos/#{video.id}/edit"%></p>
                         </div><!--captions-->
-
                         
                         <%=button_to "/users/#{@user.slug}/videos/#{video.id}/remove", :action=>'remove', class: "u-button" do %>
                             <p class="u-remove">Remove</p>
                         <%end%>
                     </div>
-                <%end%> 
+                <%end%> <!--category.videos-->
             </div> 
-        <%end%>
+        <%end%> <!--user.categories-->
     </div>
 

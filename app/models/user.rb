@@ -21,4 +21,12 @@ class User < ApplicationRecord
     def self.find_by_slug(slug) #use self because Class method, not instance variable
         self.all.find{|user| user.slug == slug}
     end
+
+    
+
+
+
+
+
+
 end
