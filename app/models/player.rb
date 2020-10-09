@@ -69,6 +69,14 @@ class Player < ApplicationRecord
         self.videos.count
     end
 
+    def find_player
+        @player=Player.find_by_slug(params[:slug])
+    end 
+
+    def all_players
+        @players=Player.all
+    end
+
 
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 

@@ -8,6 +8,7 @@ class Video < ApplicationRecord
     belongs_to :category, optional: true
     has_many :user_videos
     has_many :users, through: :user_videos
+    has_many :comments, through: :user_videos
     accepts_nested_attributes_for :category
 
     def category_name=(name)

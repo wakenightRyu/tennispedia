@@ -6,7 +6,7 @@
 
 <div class="user-edit-form">
     <%=render 'form'%>
-    <%=button_to "/users/#{@user.slug}", :action=>'cancel', class: "cancel-button" do %>
+    <%=button_to "/users/#{@user.slug}/edit/cancel", :action=>'cancel', class: "cancel-button" do %>
         <p class="cancel">Cancel</p>
     <%end%>
 </div> <br>

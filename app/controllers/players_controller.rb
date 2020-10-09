@@ -1,17 +1,13 @@
 class PlayersController < ApplicationController
     before_action :require_login
 
-    def index
-        @players=Player.all
-        
-    end
 
-    def show
-        @player=Player.find_by_slug(params[:slug])
+    def index
+        all_players
     end
 
     def filter
-        @players=Player.all
+        all_players
 
         @players=@players.filter_by_sex(params[:sex_id]) unless params[:sex_id].blank?
 
@@ -27,8 +23,7 @@ class PlayersController < ApplicationController
     end
 
     def search
-        
-        @players=Player.all
+        all_players
 
         @players=@players.filter_by_first_name(params[:first_name]) unless params[:first_name].blank?
 
@@ -37,11 +32,11 @@ class PlayersController < ApplicationController
     end 
 
     def match
-        @player=Player.find_by_slug(params[:slug])
+        find_player
     end
 
     def edit
-        @player=Player.find_by_slug(params[:slug])
+        find_player
     end
 
     def new
@@ -49,9 +44,7 @@ class PlayersController < ApplicationController
     end
 
     def create
-      
         @player=Player.new(player_params)
-    
         if @player.valid? 
             @player.save
             redirect_to "/players/#{@player.slug}/videos"
@@ -61,13 +54,8 @@ class PlayersController < ApplicationController
     end
 
     def update
-        @player=Player.find_by_slug(params[:slug])
-
+        find_player
         if @player.update(player_params)
-            if params[:player][:styles][:name].present?
-                @style=Style.find_or_create_by(name: params[:player][:styles][:name])
-                @player.styles << @style
-            end
             redirect_to "/players/#{@player.slug}/videos"
         else 
             render :edit 
@@ -75,15 +63,13 @@ class PlayersController < ApplicationController
     end
 
     def destroy
-        @player= Player.find_by_slug(params[:slug])
-        
+        find_player
         @player.destroy
         redirect_to players_path
     end
 
     def cancel
-        @player= Player.find_by_slug(params[:slug])
-        
+        find_player
         redirect_to "/players/#{@player.slug}/videos"
     end
 

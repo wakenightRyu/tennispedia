@@ -1,0 +1,27 @@
+<%=render 'application/header'%>
+
+<p class="back-to"><%=link_to "Back to Favorite Videos", "/users/#{@user.slug}"%></p>
+
+<div class="video-embedded">
+    <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=@video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <div class="u-captions"> 
+        <p class="u-video-player"><%=link_to @video.player.fullname, "/players/#{@video.player.slug}/videos"%></p>
+                            
+        <p class="u-video-year"><%=@video.year%></p>
+        <p class="u-edit"><%=link_to "edit video", "/players/#{@video.player.slug}/videos/#{@video.id}/edit"%></p>
+    </div><!--captions-->
+</div>
+
+<div class="video-comment">
+    <%=form_for :user_video do |f|%>
+        <%=f.text_area :comment, placeholder: "Enter Comment", class: "comment-field"%>
+        <%=f.submit "Save Comment"%>
+    <%end%>
+</div>
+
+
+
+    
+
+

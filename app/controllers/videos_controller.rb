@@ -66,7 +66,6 @@ class VideosController < ApplicationController
         @video=Video.find_by(id: params[:id])
         @player=Player.find_by_slug(params[:slug])
         @user=current_user
-
         @user.videos<<(@video)
         render :index
     end
@@ -90,6 +89,8 @@ class VideosController < ApplicationController
         @video.destroy
         redirect_to "/players/#{@player.slug}/videos"
     end
+
+    
 
     private
 

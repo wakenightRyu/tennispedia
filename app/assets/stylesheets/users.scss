@@ -17,6 +17,7 @@
 
 .u-video-year {
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 .u-edit {
@@ -55,6 +56,8 @@
     position: absolute;
     margin-top: 148px;
 }
+
+
 
 .user-edit-form {
     margin-top: 40px;
@@ -95,4 +98,24 @@ h4.videos-count {
 
 .users-statuses {
     margin-top: 100px;
+}
+
+
+/* USERS/COMMENT */ 
+/* ============= */ 
+
+p.back-to {
+    margin-top: 80px;
+}
+
+.video-comment {
+    margin-top: 30px;
+}
+
+.comment-field {
+    width: 400px;
+    height: 120px;}
+
+.video-embedded {
+    margin-top: 40px;
 }
