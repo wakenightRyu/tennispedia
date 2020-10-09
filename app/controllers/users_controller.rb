@@ -2,12 +2,11 @@ class UsersController < ApplicationController
     before_action :require_login
 
     def show
-        @user=User.find(session[:user_id])
+        current_user
     end
 
     def new
-        if logged_in?
-            @user=current_user
+        if current_user
             redirect_to "/users/#{@user.slug}"
         else
             @user=User.new
@@ -17,7 +16,6 @@ class UsersController < ApplicationController
 
     def create
         @user=User.new(user_params)
-
         if @user.valid?
             if params[:user][:password]==params[:user][:password_confirmation]
                 @user=User.create(user_params)
@@ -32,36 +30,30 @@ class UsersController < ApplicationController
     end
 
     def edit
-        @user=User.find(session[:user_id])
-        
+        current_user
     end 
 
     def update
-        @user=User.find_by_slug(params[:slug])
-
+        current_user
         if @user.update(user_params)
             flash[:message]= 'Player was successfully updated'
             redirect_to "/users/#{@user.slug}"
-            
         else 
             render :edit 
         end
     end
 
     def remove
-        @video=Video.find_by(id: params[:id])
-        @player=@video.player
-        @user=current_user
+        find_video
+        current_user
         @user.videos.delete(@video)
         render :show
     end
 
     def cancel 
-        @user=User.find_by_slug(params[:slug])
+        current_user
         redirect_to "/users/#{@user.slug}"
     end
-
-    
 
     private
 

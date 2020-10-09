@@ -2,34 +2,29 @@ class VideosController < ApplicationController
     before_action :require_login
 
     def index
-        @player=Player.find_by_slug(params[:slug])
-        @user=current_user
+        find_player
+        current_user
     end
 
     def new
-        @player=Player.find_by_slug(params[:slug])
+        find_player
         @video=Video.new  #need for partial 'layouts/errors' object: @video
 
         @video.category_name = ""  #need because partial 'layouts/error' requires @video and def category_name requires @video.category to be selected
     end
 
     def create
-        @player=Player.find_by_slug(params[:slug])
+        find_player
         @video=Video.new(video_params) 
-        
         if params[:video][:year]!=""    
             @video.year=params[:video][:year].to_i
         end
-        
         if @video.valid?
             @video.player = @player
             @video.year=params[:video][:year].to_i
-            
             @video.category = Category.find_or_create_by(name: params[:video][:category_name])
-            
             @video.save
             @player.videos <<@video
-
             redirect_to "/players/#{@player.slug}/videos"
         else 
             render :new
@@ -37,21 +32,18 @@ class VideosController < ApplicationController
     end
 
     def edit 
-        @player=Player.find_by_slug(params[:slug])
-        @video=Video.find_by(id: params[:id])
+        find_player
+        find_video
     end
 
     def update 
-        @video=Video.find_by(id: params[:id])
-        @player=Player.find_by_slug(params[:slug])
-
+        find_player
+        find_video
         if @video.update(video_params)
             if params[:video][:year]!="" 
                 @video.year=params[:video][:year].to_i
-            
                 @video.save
                 redirect_to "/players/#{@player.slug}/videos"
-                
             else 
                 flash[:message]= 'A year must be selected'
                 @video.year=params[:video][:year] #when not updating beecause selected 'Select Year', stores 'select year' as @video.year to render :edit
@@ -63,29 +55,29 @@ class VideosController < ApplicationController
     end
 
     def favorite 
-        @video=Video.find_by(id: params[:id])
-        @player=Player.find_by_slug(params[:slug])
+        find_player
+        find_video
         @user=current_user
         @user.videos<<(@video)
         render :index
     end
 
     def remove
-        @video=Video.find_by(id: params[:id])
-        @player=@video.player
-        @user=current_user
+        find_video
+        find_player
+        current_user
         @user.videos.delete(@video)
         render :index
     end
 
     def cancel
-        @player=Player.find_by_slug(params[:slug])
+        find_player
         redirect_to "/players/#{@player.slug}/videos"
     end
 
     def destroy
-        @video=Video.find_by(id: params[:id])
-        @player=Player.find_by_slug(params[:slug])
+        find_video
+        find_player
         @video.destroy
         redirect_to "/players/#{@player.slug}/videos"
     end

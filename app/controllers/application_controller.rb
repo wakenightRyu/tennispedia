@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-    helper_method :logged_in?, :current_user, :require_login, :find_player, :all_players
+    helper_method :logged_in?, :current_user, :require_login, :find_player, :all_players, :find_video
 
     def logged_in?
         session[:user_id].present?
@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
     def current_user
         if logged_in?
-          User.find(session[:user_id])
+          @user = User.find(session[:user_id])
         end
     end
 
@@ -23,5 +23,9 @@ class ApplicationController < ActionController::Base
     def all_players
         @players=Player.all
     end
+
+    def find_video
+        @video=Video.find_by(id: params[:id])
+    end 
 
 end
