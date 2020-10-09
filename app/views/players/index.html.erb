@@ -23,6 +23,7 @@
             <div class = "filter-menu">
                 <%=select_tag :country_id,  options_for_select(Country.all.sort_by{|c| c.name}.collect{|f| [f.name, f.id]}, selected: params[:country_id]), :include_blank => 'All Countries'%>
             </div>
+
             <%=submit_tag("Filter")%>
         <%end%> <br><br>
     </div><!--filter-input-->

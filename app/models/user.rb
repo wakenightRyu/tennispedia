@@ -1,10 +1,10 @@
 class User < ApplicationRecord
     has_secure_password
 
-    validates :name, presence: true, uniqueness: true
     validates :email, presence: true
     validates :password, presence: true
     validates :password_confirmation, presence: true
+    validates_format_of :name, :with => /\A[a-zA-Z]+\z/
     
     belongs_to :admin_status, optional: true
     has_many :player_users

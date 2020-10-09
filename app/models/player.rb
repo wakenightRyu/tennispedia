@@ -67,6 +67,10 @@ class Player < ApplicationRecord
         self.videos.count
     end
 
+    def height_in_inches
+        inches + feet*12
+    end
+
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 
     scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
