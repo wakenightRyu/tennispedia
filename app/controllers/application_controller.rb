@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     def logged_in?
         session[:user_id].present?
     end
-
+   
     def current_user
         if logged_in?
           @user = User.find(session[:user_id])
@@ -31,5 +31,5 @@ class ApplicationController < ActionController::Base
     def find_user_video
         @user_video=UserVideo.all.find_by(user_id: @user.id, video_id: @video.id)
     end 
-
+    
 end

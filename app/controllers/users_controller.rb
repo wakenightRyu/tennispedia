@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-    before_action :require_login
-
+    before_action :require_login, except: [:new]
+    
     def show
         current_user
     end
 
     def new
+        current_user
         if current_user
             redirect_to "/users/#{@user.slug}"
         else
