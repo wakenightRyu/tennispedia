@@ -22,6 +22,8 @@ class Player < ApplicationRecord
     has_many :categories, through: :videos
     has_many :player_styles
     has_many :styles, through: :player_styles
+    has_many :player_matches
+    has_many :matches, through: :player_matches
     accepts_nested_attributes_for :styles
 
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
