@@ -45,8 +45,7 @@ class PlayersController < ApplicationController
 
     def create
         @player=Player.new(player_params)
-        if @player.valid? 
-            @player.save
+        if @player.save
             redirect_to "/players/#{@player.slug}/videos"
         else
             render :new 

@@ -24,6 +24,20 @@ class Player < ApplicationRecord
     has_many :styles, through: :player_styles
     accepts_nested_attributes_for :styles
 
+    scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
+
+    scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
+
+    scope :filter_by_handedness, -> (handedness_id) {where handedness_id: handedness_id}
+
+    scope :filter_by_sex, -> (sex_id) {where sex_id: sex_id}
+
+    scope :filter_by_country, -> (country_id) {where country_id: country_id}
+  
+    scope :filter_by_first_name, -> (first_name){where first_name: first_name.capitalize}
+
+    scope :filter_by_last_name, -> (last_name){where last_name: last_name.capitalize}
+
     def styles_attributes=(style_attributes)
         style_attributes.values.each do |style_attribute|
             style = Style.find_or_create_by(style_attribute)
@@ -68,18 +82,6 @@ class Player < ApplicationRecord
         inches + feet*12
     end
 
-    scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
-
-    scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
-
-    scope :filter_by_handedness, -> (handedness_id) {where handedness_id: handedness_id}
-
-    scope :filter_by_sex, -> (sex_id) {where sex_id: sex_id}
-
-    scope :filter_by_country, -> (country_id) {where country_id: country_id}
-  
-    scope :filter_by_first_name, -> (first_name){where first_name: first_name.capitalize}
-
-    scope :filter_by_last_name, -> (last_name){where last_name: last_name.capitalize}
+    
 
 end

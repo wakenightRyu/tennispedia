@@ -10,20 +10,14 @@ class SessionsController < ApplicationController
     end
 
     def create
-        if params[:user][:name].blank? || params[:user][:password].blank?
-            flash[:message] = "Please enter both a user name and password."
-            render 'new'
-        elsif @user=User.find_by(name: params[:user][:name]) #check if user exists in database 
-            if @user.authenticate(params[:user][:password])
+        if @user=User.find_by(name: params[:user][:name])
+            if @user && @user.authenticate(params[:user][:password])
                 session[:user_id]=@user.id
                 redirect_to "/users/#{@user.slug}"
-            else
-                flash[:message] = "Invalid password. Please try again."
-                render 'new'
-            end
-        else  
-            flash[:message] = "This user name does not exist."
-            render 'new'
+            end 
+        else 
+            flash[:message] = "Invalid login. Please try again."
+                redirect_to "/login"
         end
     end
 

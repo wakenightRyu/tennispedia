@@ -4,7 +4,7 @@ class User < ApplicationRecord
     validates :email, presence: true
     validates :password, presence: true
     validates :password_confirmation, presence: true
-    validates_format_of :name, :with => /\A[a-zA-Z]+\z/
+    validates_format_of :name, :with => /\A[a-zA-Z\s+]+\z/
     
     belongs_to :admin_status, optional: true
     has_many :user_videos
