@@ -1,12 +1,11 @@
 class UsersController < ApplicationController
     before_action :require_login, except: [:new, :create]
+    before_action :current_user, :find_video
     
     def show
-        current_user
     end
 
     def new
-        current_user
         if current_user
             redirect_to "/users/#{@user.slug}"
         else
@@ -31,11 +30,9 @@ class UsersController < ApplicationController
     end
 
     def edit
-        current_user
     end 
 
     def update
-        current_user
         if @user.update(user_params)
             flash[:message]= 'Player was successfully updated'
             redirect_to "/users/#{@user.slug}"
@@ -45,14 +42,11 @@ class UsersController < ApplicationController
     end
 
     def remove
-        find_video
-        current_user
         @user.videos.delete(@video)
         render :show
     end
 
     def cancel 
-        current_user
         redirect_to "/users/#{@user.slug}"
     end
 
