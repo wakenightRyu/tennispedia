@@ -1,14 +1,11 @@
 class PlayersController < ApplicationController
     before_action :require_login
+    before_action :all_players, :find_player 
 
-
-    def index
-        all_players
+    def index    
     end
 
     def filter
-        all_players
-
         @players=@players.filter_by_sex(params[:sex_id]) unless params[:sex_id].blank?
 
         @players=@players.filter_by_forehand(params[:forehand_grip_id]) unless params[:forehand_grip_id].blank?
@@ -23,8 +20,6 @@ class PlayersController < ApplicationController
     end
 
     def search
-        all_players
-
         @players=@players.filter_by_first_name(params[:first_name]) unless params[:first_name].blank?
 
         @players=@players.filter_by_last_name(params[:last_name]) unless params[:last_name].blank?
@@ -32,11 +27,9 @@ class PlayersController < ApplicationController
     end 
 
     def match
-        find_player
     end
 
     def edit
-        find_player
     end
 
     def new
@@ -53,7 +46,6 @@ class PlayersController < ApplicationController
     end
 
     def update
-        find_player
         if @player.update(player_params)
             redirect_to "/players/#{@player.slug}/videos"
         else 
@@ -62,13 +54,11 @@ class PlayersController < ApplicationController
     end
 
     def destroy
-        find_player
         @player.destroy
         redirect_to players_path
     end
 
     def cancel
-        find_player
         redirect_to "/players/#{@player.slug}/videos"
     end
 
@@ -81,7 +71,5 @@ class PlayersController < ApplicationController
     def player_params
         params.require(:player).permit(:player_image, :first_name, :last_name, :sex_id, :birthdate, :country_id, :feet, :inches, :handedness_id, :forehand_grip_id, :backhand_type_id, style_ids:[], styles_attributes:[:name])
     end
-
-    
 
 end

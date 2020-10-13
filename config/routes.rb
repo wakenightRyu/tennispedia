@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
 
-
+  get '/players/filter' => 'players'
   post '/players/filter' => 'players#filter'
   post '/players/search' => 'players#search'
   get '/players' => 'players#index'
