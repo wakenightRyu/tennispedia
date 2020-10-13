@@ -1,20 +1,17 @@
 class VideosController < ApplicationController
     before_action :require_login
+    before_action :find_player, :find_video, :current_user
 
     def index
-        find_player
-        current_user
     end
 
     def new
-        find_player
         @video=Video.new  #need for partial 'layouts/errors' object: @video
 
         @video.category_name = ""  #need because partial 'layouts/error' requires @video and def category_name requires @video.category to be selected
     end
 
     def create
-        find_player
         @video=Video.new(video_params) 
         if params[:video][:year]!=""    
             @video.year=params[:video][:year].to_i
@@ -32,13 +29,9 @@ class VideosController < ApplicationController
     end
 
     def edit 
-        find_player
-        find_video
     end
 
     def update 
-        find_player
-        find_video
         if @video.update(video_params)
             if params[:video][:year]!="" 
                 @video.year=params[:video][:year].to_i
@@ -55,39 +48,27 @@ class VideosController < ApplicationController
     end
 
     def favorite 
-        find_player
-        find_video
-        @user=current_user
         @user.videos<<(@video)
         render :index
     end
 
     def remove
-        find_video
-        find_player
-        current_user
         @user.videos.delete(@video)
         render :index
     end
 
     def cancel
-        find_player
         redirect_to "/players/#{@player.slug}/videos"
     end
 
     def destroy
-        find_video
-        find_player
         @video.destroy
         redirect_to "/players/#{@player.slug}/videos"
     end
-
-    
 
     private
 
     def video_params
         params.require(:video).permit(:link, :category_name)
     end
-
 end
