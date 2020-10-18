@@ -36,6 +36,18 @@ class Video < ApplicationRecord
             end
         end
     end
+
+    def player_fullname
+        player.fullname
+    end 
+
+    def player_slug
+        player.slug
+    end
+
+    def favorited_by_user?(user)
+        users.include?(user)
+    end 
     
 end    
     

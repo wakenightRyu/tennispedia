@@ -3,6 +3,7 @@ class UsersController < ApplicationController
     before_action :current_user, :find_video
     
     def show
+        @user_videos_sorted_by_categories = @user.categories.uniq.sort_by{|category| category.name}
     end
 
     def new

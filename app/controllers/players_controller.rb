@@ -2,7 +2,8 @@ class PlayersController < ApplicationController
     before_action :require_login
     before_action :all_players, :find_player 
 
-    def index    
+    def index  
+        @players_sorted_by_name = @players.sort_by{|p| p.first_name}   
     end
 
     def filter

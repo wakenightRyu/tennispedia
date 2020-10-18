@@ -2,32 +2,32 @@
 
 <div class="user-second-header">
 
-    <h1><%="#{@user.name.split.first}'s Favorite Videos"%></h1> 
+    <h1><%="#{@user.first_name}'s Favorite Videos"%></h1> 
 
     <%=link_to "edit profile","/users/#{@user.slug}/edit", class: "edit-user" %>
 </div>
     <div class="flash-msg">
     <%= flash[:message] if flash[:message]%>
 </div>
-<%if @user.videos.blank?%>
+<%if @user.no_favorited_videos%>
     <p class="videos-count">You do not have any videos favorited yet. Browse <%=link_to "players","/players"%>.</p>
 <%else%>
-    <h4 class="videos-count"><i><%=@user.videos.count%> Videos  </i></h4>
+    <h4 class="videos-count"><i><%=@user.favorited_videos_count%> Videos  </i></h4>
 <%end%>
     <div class="user-videos">
-        <%@user.categories.uniq.sort_by{|category| category.name}.each do |category|%>
-            <h3><%=category.name.upcase%></h3>
+        <%@user.videos_sorted_by_categories.each do |category|%> <!--method in application_record.rb-->
+            <h3><%=category.name_upcase%></h3>
             <div class="user-category-videos">
-                <%category.videos.select{|video| video.users.include?(@user)}.each do |video|%>
+                <%category.videos_favorited_by_user(@user).each do |video|%>
                     <div class="individual-card">
                         <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         <div class="u-captions"> 
-                            <p class="u-video-player"><%=link_to video.player.fullname, "/players/#{video.player.slug}/videos"%></p>
+                            <p class="u-video-player"><%=link_to video.player_fullname, "/players/#{video.player_slug}/videos"%></p>
                             
                             <p class="u-video-year"><%=video.year%></p>
                             <p class="comment"><%=link_to "Comment", "/users/#{@user.slug}/videos/#{video.id}/comment"%></p>
-                            <p class="u-edit"><%=link_to "edit video", "/players/#{video.player.slug}/videos/#{video.id}/edit"%></p>
+                            <p class="u-edit"><%=link_to "edit video", "/players/#{video.player_slug}/videos/#{video.id}/edit"%></p>
                         </div><!--captions-->
                         
                         <%=button_to "/users/#{@user.slug}/videos/#{video.id}/remove", :action=>'remove', class: "u-button" do %>

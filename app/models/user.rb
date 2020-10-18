@@ -19,4 +19,20 @@ class User < ApplicationRecord
         self.all.find{|user| user.slug == slug}
     end
 
+    def first_name
+        name.split.first
+    end 
+
+   
+
+    def no_favorited_videos
+        videos.blank?
+    end
+
+    def favorited_videos_count
+        videos.count
+    end
+
+
+
 end

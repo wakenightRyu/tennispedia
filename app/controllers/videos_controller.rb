@@ -7,7 +7,6 @@ class VideosController < ApplicationController
 
     def new
         @video=Video.new  #need for partial 'layouts/errors' object: @video
-
         @video.category_name = ""  #need because partial 'layouts/error' requires @video and def category_name requires @video.category to be selected
     end
 

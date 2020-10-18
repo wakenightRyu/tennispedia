@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   post '/logout' => 'sessions#destroy'
   delete '/logout' => 'sessions#destroy'
-  
 
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
@@ -40,10 +39,8 @@ Rails.application.routes.draw do
   post '/players/:slug/videos/:id/edit' => 'videos#update'
   get '/players/:slug/videos/:id/favorite' => 'videos#favorite'
   post '/players/:slug/videos/:id/favorite' => 'videos#favorite'
-  get '/players/:slug/videos/:id/remove' => 'videos#remove'
   post '/players/:slug/videos/:id/remove' => 'videos#remove'
   post '/players/:slug/videos' => 'players#cancel'
-  
   
   post '/users/new' => 'users#create'
   get '/users/:slug' => 'users#show'
@@ -55,12 +52,6 @@ Rails.application.routes.draw do
   get '/users/:slug/videos/:id/comment' => 'user_videos#comment'
   post '/users/:slug/videos/:id/comment' => 'user_videos#update'
 
-
-  #get '/status' => 'sessions#status'
-  #post '/status' => 'sessions#status'
-
-  
-  
   resources :players, only: [:show] do
     resources :matches, only: [:index, :new]
     resources :videos, only: [:index, :new]

@@ -1,6 +1,5 @@
 <%=render 'application/header'%>
 
-
 <%=render partial: 'players/bio', locals:{player: @player}%>
 
 <div class="video-header">
@@ -14,22 +13,21 @@
 </div>
 
     <div class="videos">
-        <h4><i><%=@player.videos.count%> Videos  </i></h4>
-        <%@player.categories.uniq.sort_by{|category| category.name}.each do |category|%>
+        <h4><i><%=@player.videos_count%> Videos  </i></h4>
+        <%@player.videos_sorted_by_categories.each do |category|%> <!--method in application_record.rb-->
             
-            <h3><%=category.name.upcase%></h3>
+            <h3><%=category.name_upcase%></h3>
             <div class="player-category-videos">
-                <%category.videos.select{|video| video.player_id==@player.id}.sort_by{|video| video.year}.reverse.each do |video|%>
+                <%category.videos_by_player_ordered_by_most_recent(@player).each do |video|%>
                     <div class="individual-card">
                         <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
                         <div class="captions"> 
                             <p class="video-year"><%=video.year%></p>
-
                             <p class="edit"><%=link_to "edit video", "/players/#{@player.slug}/videos/#{video.id}/edit"%></p>
                         </div><!--captions-->
                         
-                        <%if video.users.include?(@user)%>
+                        <%if video.favorited_by_user?(@user)%>
                             <%=button_to "/players/#{@player.slug}/videos/#{video.id}/remove", class: "favorited-button", :action=>'remove' do %>
                                 <p class="favorited">Favorited</p>
                             <%end%>
@@ -38,7 +36,7 @@
                                 <p class="favorite-video">Favorite</p>
                             <%end%>
                         <%end%>
-                    </div>
+                    </div> <!--individual card-->
                 <%end%> 
             </div> <!--player-category-videos-->
         <%end%>
