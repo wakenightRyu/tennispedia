@@ -20,9 +20,11 @@
         <p><b>Play Style</b>:&nbsp; <%=@player.styles.uniq.map {|style| style.name}.join(", ")%></p>
     </div>
 
-    <%=link_to "/players/#{@player.slug}/edit" do%>
-        <p class="edit">edit player profile</p>
-    <%end%> <br><br>
+    <%if is_admin?%>
+        <%=link_to "/players/#{@player.slug}/edit" do%>
+            <p class="edit">edit player profile</p>
+        <%end%> <br><br>
+    <%end%>
 
 </div>
 

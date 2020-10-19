@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
     before_action :require_login, except: [:new, :create]
-    before_action :current_user, :find_video
+    before_action :find_video, :current_user
     
     def show
-        @user_videos_sorted_by_categories = @user.categories.uniq.sort_by{|category| category.name}
     end
 
     def new

@@ -18,37 +18,51 @@
     margin-bottom: 30px;
 }
 
-.videos .individual-card p.video-year {
-    float: left;
+.individual-card {
+    margin-bottom: 66px;
 }
-
-.videos .individual-card p.edit {
-    display: inline-block;
-    margin-left: 40px;
-    font-size: 13.5px;
-  }
 
 .individual-card button {
     position: absolute;
     margin-top: -32px;
-    margin-left: 382px;
+    margin-left: 420px;
     height: 25px;
     width: 75px;
 } 
 
-
-    
-
-p.edit {
+p.edit a{
+    position: absolute;
+    margin-left: 90px;
+    margin-top: 2px;
     font-size: 13px;
 }
 
+p.edit-hidden a{
+    position: absolute;
+    visibility: hidden;
+    margin-left: 90px;
+    margin-top: 2px;
+    font-size: 13px;
+}
+
+p.video-year {
+    position: absolute;
+    margin-top: 3px;
+}
 
 button.favorited-button {
+    position: absolute;
+    margin-top: -10px;
     background-color: green;
 }
 
-button p.favorited {
+button.regular-button {
+    position: absolute;
+    margin-top: -10px;
+}
+
+.favorited-button p.favorited {
+    margin-top: 2px;
     color: white;
 }
 
@@ -57,7 +71,7 @@ button p.favorited {
 }
 
 .player-category-videos {
-    margin-bottom: -8px;
+    margin-bottom: -28px;
     
 }
 

@@ -3,7 +3,9 @@
 <div class="index-second-header">
     <h1>Players</h1>
 
-    <%=link_to "Add Player","/players/new", class: "add-player" %> 
+    <%if is_admin?%>
+        <%=link_to "Add Player","/players/new", class: "add-player" %> 
+    <%end%>
 
     <div class="filter-input">
         <%=form_tag players_filter_path, :method=> 'post', :html=>{:class=>'form-inline'} do %>

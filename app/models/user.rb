@@ -6,7 +6,6 @@ class User < ApplicationRecord
     validates :password_confirmation, presence: true
     validates_format_of :name, :with => /\A[a-zA-Z\s+]+\z/
     
-    belongs_to :admin_status, optional: true
     has_many :user_videos
     has_many :videos, through: :user_videos
     has_many :categories, through: :videos
@@ -23,8 +22,6 @@ class User < ApplicationRecord
         name.split.first
     end 
 
-   
-
     def no_favorited_videos
         videos.blank?
     end
@@ -33,6 +30,8 @@ class User < ApplicationRecord
         videos.count
     end
 
-
+    def is_admin?
+        admin.eql? true
+    end
 
 end

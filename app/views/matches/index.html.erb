@@ -7,8 +7,10 @@
 
     <%=link_to "Matches", "/players/#{@player.slug}/matches", class: "second-link current-page" %>
 
-    <%=link_to "/players/#{@player.slug}/matches/new", :controller=>'videos', :action=>'new' do%>
-        + Add Match
+    <%if is_admin?%>
+        <%=link_to "/players/#{@player.slug}/matches/new", :controller=>'videos', :action=>'new' do%>
+            + Add Match
+        <%end%>
     <%end%>
 </div>
 

@@ -1,6 +1,8 @@
 class VideosController < ApplicationController
     before_action :require_login
     before_action :find_player, :find_video, :current_user
+    before_action :unauthorized_to_edit_video, only: [:edit]
+    before_action :unauthorized_to_add_video, only: [:new]
 
     def index
     end
@@ -69,5 +71,13 @@ class VideosController < ApplicationController
 
     def video_params
         params.require(:video).permit(:link, :category_name)
+    end
+
+    def unauthorized_to_edit_video
+        redirect_to "/players/#{@player.slug}/videos" unless is_admin?
+    end
+
+    def unauthorized_to_add_video
+        redirect_to "/players/#{@player.slug}/videos" unless is_admin?
     end
 end

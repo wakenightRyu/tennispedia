@@ -7,8 +7,10 @@
 
     <%=link_to "Matches", "/players/#{@player.slug}/matches", class: "second-link" %>
 
-    <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
-        + Add Video
+    <%if is_admin?%>
+        <%=link_to "/players/#{@player.slug}/videos/new", :controller=>'videos', :action=>'new' do%>
+            + Add Video
+        <%end%>
     <%end%>
 </div>
 
@@ -22,17 +24,19 @@
                     <div class="individual-card">
                         <iframe width="495" height="300" src="https://www.youtube.com/embed/<%=video.youtube_url_parse%>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-                        <div class="captions"> 
-                            <p class="video-year"><%=video.year%></p>
+                        <p class="video-year"><%=video.year%></p>
+                        <%if is_admin?%>
                             <p class="edit"><%=link_to "edit video", "/players/#{@player.slug}/videos/#{video.id}/edit"%></p>
-                        </div><!--captions-->
+                        <%else%> <!-- to keep spacing the same for non-admin user -->
+                            <p class="edit-hidden"><%=link_to "edit video", "/players/#{@player.slug}/videos/#{video.id}/edit"%></p>
+                        <%end%>
                         
                         <%if video.favorited_by_user?(@user)%>
                             <%=button_to "/players/#{@player.slug}/videos/#{video.id}/remove", class: "favorited-button", :action=>'remove' do %>
                                 <p class="favorited">Favorited</p>
                             <%end%>
                         <%else%>
-                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/favorite", :action=>'favorite' do %>
+                            <%=button_to "/players/#{@player.slug}/videos/#{video.id}/favorite", class: "regular-button", :action=>'favorite' do %>
                                 <p class="favorite-video">Favorite</p>
                             <%end%>
                         <%end%>

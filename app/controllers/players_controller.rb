@@ -1,6 +1,8 @@
 class PlayersController < ApplicationController
-    before_action :require_login
+    before_action :require_login, :current_user
     before_action :all_players, :find_player 
+    before_action :unauthorized_to_edit_player, only: [:edit]
+    before_action :unauthorized_to_add_player, only: [:new]
 
     def index  
         @players_sorted_by_name = @players.sort_by{|p| p.first_name}   
@@ -73,4 +75,11 @@ class PlayersController < ApplicationController
         params.require(:player).permit(:player_image, :first_name, :last_name, :sex_id, :birthdate, :country_id, :feet, :inches, :handedness_id, :forehand_grip_id, :backhand_type_id, style_ids:[], styles_attributes:[:name])
     end
 
+    def unauthorized_to_edit_player
+        redirect_to "/players/#{@player.slug}/videos" unless is_admin?
+    end
+
+    def unauthorized_to_add_player
+        redirect_to "/players" unless is_admin?
+    end
 end
