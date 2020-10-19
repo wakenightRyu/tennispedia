@@ -84,6 +84,4 @@ class Player < ApplicationRecord
         inches + feet*12
     end
 
-    
-
 end

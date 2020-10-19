@@ -3,9 +3,9 @@ class PlayersController < ApplicationController
     before_action :all_players, :find_player 
     before_action :unauthorized_to_edit_player, only: [:edit]
     before_action :unauthorized_to_add_player, only: [:new]
+    before_action :players_sorted_by_name, only: [:index]
 
-    def index  
-        @players_sorted_by_name = @players.sort_by{|p| p.first_name}   
+    def index   
     end
 
     def filter

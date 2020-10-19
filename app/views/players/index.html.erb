@@ -42,7 +42,7 @@
 
 <div class="players-content">
     <h4><i><%=@players.count%> Players  </i></h4><br><br>
-    <%@players_sorted_by_name.each do |player|%>
+    <%players_sorted_by_name.each do |player|%>
         <div class="player-card">
             <%=link_to "/players/#{player.slug}/videos" do%>
                 <%=player.fullname%> 
