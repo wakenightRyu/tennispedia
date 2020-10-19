@@ -26,7 +26,7 @@
                             <p class="u-video-player"><%=link_to video.player_fullname, "/players/#{video.player_slug}/videos"%></p>
                             
                             <p class="u-video-year"><%=video.year%></p>
-                            <p class="comment"><%=link_to "Comment", "/users/#{@user.slug}/videos/#{video.id}/comment"%></p>
+                            <p class="comment"><%=link_to "comment", "/users/#{@user.slug}/videos/#{video.id}/comment"%></p>
                             <%if is_admin?%>
                                 <p class="u-edit"><%=link_to "edit video", "/players/#{video.player_slug}/videos/#{video.id}/edit"%></p>
                             <%end%>
