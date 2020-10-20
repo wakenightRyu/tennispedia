@@ -3,6 +3,12 @@ class UsersController < ApplicationController
     before_action :find_video, :current_user
     
     def show
+        @user_videos_sorted_by_categories= @user.categories.uniq.sort_by{|category| category.name}
+
+        @none_favorited_videos= @user.videos.blank?
+
+        @user_favorited_videos_count = @user.videos.count
+
     end
 
     def new
@@ -43,7 +49,7 @@ class UsersController < ApplicationController
 
     def remove
         @user.videos.delete(@video)
-        render :show
+        redirect_to "/users/#{@user.slug}"
     end
 
     def cancel 

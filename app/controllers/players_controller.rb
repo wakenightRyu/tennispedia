@@ -3,9 +3,10 @@ class PlayersController < ApplicationController
     before_action :all_players, :find_player 
     before_action :unauthorized_to_edit_player, only: [:edit]
     before_action :unauthorized_to_add_player, only: [:new]
-    before_action :players_sorted_by_name, only: [:index]
 
-    def index   
+    def index  
+        instance_variable_players_sorted_by_name
+        players_count
     end
 
     def filter
@@ -19,14 +20,19 @@ class PlayersController < ApplicationController
 
         @players=@players.filter_by_handedness(params[:handedness_id]) unless params[:handedness_id].blank?
 
-        render 'index'
+        instance_variable_players_sorted_by_name
+        players_count
+        
     end
 
     def search
         @players=@players.filter_by_first_name(params[:first_name]) unless params[:first_name].blank?
 
         @players=@players.filter_by_last_name(params[:last_name]) unless params[:last_name].blank?
-        render 'index'
+
+        instance_variable_players_sorted_by_name
+        players_count
+        
     end 
 
     def match
@@ -81,5 +87,13 @@ class PlayersController < ApplicationController
 
     def unauthorized_to_add_player
         redirect_to "/players" unless is_admin?
+    end
+
+    def instance_variable_players_sorted_by_name
+        @players_sorted_by_name = @players.sort_by{|p| p.first_name}
+    end
+
+    def players_count
+        @players_count = @players.count
     end
 end

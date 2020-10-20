@@ -22,16 +22,4 @@ class User < ApplicationRecord
         name.split.first
     end 
 
-    def no_favorited_videos
-        videos.blank?
-    end
-
-    def favorited_videos_count
-        videos.count
-    end
-
-    def is_admin?
-        admin.eql? true
-    end
-
 end

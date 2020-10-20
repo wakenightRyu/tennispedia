@@ -1,0 +1,54 @@
+<%=render 'application/header'%>
+
+<div class="index-second-header">
+    <h1>Players</h1>
+
+    <%if is_admin?%>
+        <%=link_to "Add Player","/players/new", class: "add-player" %> 
+    <%end%>
+
+    <div class="filter-input">
+        <%=form_tag players_filter_path, :method=> 'post', :html=>{:class=>'form-inline'} do %>
+            <div class="filter-menu">
+                <%=select_tag :sex_id,  options_for_select(Sex.all.collect{|f| [f.name, f.id]}, selected: params[:sex_id]), :include_blank => 'All Sexes'%>
+            </div>
+            <div class="filter-menu">
+                <%=select_tag :handedness_id,  options_for_select(Handedness.all.collect{|f| [f.name, f.id]}, selected: params[:handedness_id]), :include_blank => 'All Handedness'%>
+            </div>
+            <div class="filter-menu">
+                <%=select_tag :forehand_grip_id,  options_for_select(ForehandGrip.all.collect{|f| [f.name, f.id]}, selected: params[:forehand_grip_id]), :include_blank => 'All Forehands'%>
+            </div>
+            <div class = "filter-menu">
+                <%=select_tag :backhand_type_id,  options_for_select(BackhandType.all.collect{|f| [f.name, f.id]}, selected: params[:backhand_type_id]), :include_blank => 'All Backhands'%>
+            </div>
+            <div class = "filter-menu">
+                <%=select_tag :country_id,  options_for_select(Country.all.sort_by{|c| c.name}.collect{|f| [f.name, f.id]}, selected: params[:country_id]), :include_blank => 'All Countries'%>
+            </div>
+
+            <%=submit_tag("Filter")%>
+        <%end%> <br><br>
+    </div><!--filter-input-->
+
+    <div class="name-filter filter-input">
+        <%=form_tag players_search_path, :method=> 'post', :html=>{:class=>'form-inline'}, class: "search-bar" do %>
+            <%=text_field_tag :first_name, params[:first_name], placeholder: "First Name"%>
+
+            <%=text_field_tag :last_name, params[:last_name], placeholder: "Last Name"%>
+            <%=submit_tag "Search", class:"search-input"%>
+        <%end%>
+    </div>
+</div><!--index-second-header-->
+<div class="search-separator"></div>
+
+<div class="players-content">
+    <h4><i><%=@players_count%> Players  </i></h4><br><br>
+    <%@players_sorted_by_name.each do |player|%>
+        <div class="player-card">
+            <%=link_to "/players/#{player.slug}/videos" do%>
+                <%=player.fullname%> 
+                <%=image_tag player.country.flag_image, class: "index-flag"%> <br><br>
+                <%=image_tag player.player_image, :class=>"player-index-img"%>
+            <%end%>
+        </div>
+    <%end%> 
+</div><!--players-content-->

@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 
     helper_method :logged_in?, :current_user, :require_login, :find_player, :all_players, :find_video, :find_user_video, :is_admin?, :players_sorted_by_name
 
+
     def logged_in?
         session[:user_id].present?
     end
@@ -36,8 +37,5 @@ class ApplicationController < ActionController::Base
         @user.admin.eql? true
     end
 
-    def players_sorted_by_name
-        @players.sort_by{|p| p.first_name}
-    end
     
 end
