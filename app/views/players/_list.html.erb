@@ -10,19 +10,19 @@
     <div class="filter-input">
         <%=form_tag players_filter_path, :method=> 'post', :html=>{:class=>'form-inline'} do %>
             <div class="filter-menu">
-                <%=select_tag :sex_id,  options_for_select(Sex.all.collect{|f| [f.name, f.id]}, selected: params[:sex_id]), :include_blank => 'All Sexes'%>
+                <%=select_tag :sex_id, options_for_select(Sex.show_by_name, selected: params[:sex_id]), :include_blank => 'All Sexes'%> <!--helper method in application_record.rb-->
             </div>
             <div class="filter-menu">
-                <%=select_tag :handedness_id,  options_for_select(Handedness.all.collect{|f| [f.name, f.id]}, selected: params[:handedness_id]), :include_blank => 'All Handedness'%>
+                <%=select_tag :handedness_id, options_for_select(Handedness.show_by_name, selected: params[:handedness_id]), :include_blank => 'All Handedness'%>
             </div>
             <div class="filter-menu">
-                <%=select_tag :forehand_grip_id,  options_for_select(ForehandGrip.all.collect{|f| [f.name, f.id]}, selected: params[:forehand_grip_id]), :include_blank => 'All Forehands'%>
+                <%=select_tag :forehand_grip_id, options_for_select(ForehandGrip.show_by_name, selected: params[:forehand_grip_id]), :include_blank => 'All Forehands'%>
             </div>
             <div class = "filter-menu">
-                <%=select_tag :backhand_type_id,  options_for_select(BackhandType.all.collect{|f| [f.name, f.id]}, selected: params[:backhand_type_id]), :include_blank => 'All Backhands'%>
+                <%=select_tag :backhand_type_id, options_for_select(BackhandType.show_by_name, selected: params[:backhand_type_id]), :include_blank => 'All Backhands'%>
             </div>
             <div class = "filter-menu">
-                <%=select_tag :country_id,  options_for_select(Country.all.sort_by{|c| c.name}.collect{|f| [f.name, f.id]}, selected: params[:country_id]), :include_blank => 'All Countries'%>
+                <%=select_tag :country_id, options_for_select(Country.sort_by_name, selected: params[:country_id]), :include_blank => 'All Countries'%>
             </div>
 
             <%=submit_tag("Filter")%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_18_193447) do
+ActiveRecord::Schema.define(version: 2020_10_22_025514) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(version: 2020_10_18_193447) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "heights", force: :cascade do |t|
+    t.integer "inches_threshold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "matches", force: :cascade do |t|
     t.string "link"
     t.integer "tournament_id"
@@ -121,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_10_18_193447) do
     t.integer "handedness_id"
     t.integer "forehand_grip_id"
     t.integer "backhand_type_id"
+    t.integer "height_in_inches"
   end
 
   create_table "rounds", force: :cascade do |t|

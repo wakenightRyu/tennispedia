@@ -10,6 +10,7 @@ class PlayersController < ApplicationController
     end
 
     def filter
+
         @players=@players.filter_by_sex(params[:sex_id]) unless params[:sex_id].blank?
 
         @players=@players.filter_by_forehand(params[:forehand_grip_id]) unless params[:forehand_grip_id].blank?
@@ -22,7 +23,10 @@ class PlayersController < ApplicationController
 
         instance_variable_players_sorted_by_name
         players_count
-        
+    end
+
+    def sort 
+        @players=@players.sort_by_most_videos
     end
 
     def search

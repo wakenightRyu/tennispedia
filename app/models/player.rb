@@ -39,6 +39,7 @@ class Player < ApplicationRecord
     scope :filter_by_first_name, -> (first_name){where first_name: first_name.capitalize}
 
     scope :filter_by_last_name, -> (last_name){where last_name: last_name.capitalize}
+    
 
     def styles_attributes=(style_attributes)
         style_attributes.values.each do |style_attribute|
@@ -84,4 +85,5 @@ class Player < ApplicationRecord
         inches + feet*12
     end
 
+    
 end
