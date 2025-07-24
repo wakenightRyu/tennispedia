@@ -5,6 +5,9 @@ class CountriesController < ApplicationController
         @countries=Country.all 
     end
 
+    def search
+    end
+
     def create
         @country=Country.new(country_params)
       

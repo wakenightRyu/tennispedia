@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   get '/countries' => 'countries#index'
   post '/countries' => 'countries#create'
 
+ get '/countries/search' => 'countries#search'
+ 
+
+  post '/players/age' => 'players#age' 
+  post '/players/backhand' => 'players#backhand'  
   get '/players/filter' => 'players'
   post '/players/filter' => 'players#filter'
   get '/players/search' => 'players'

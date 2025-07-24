@@ -28,4 +28,10 @@
         </div>
     <%end%>
 </div>
+
+<%=form_tag countries_search_path, :method=> 'get' do%>
+    <%=text_field_tag :search%>
+
+    <%=submit_tag("Search Country")%>
+<%end%>
     

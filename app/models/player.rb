@@ -26,6 +26,8 @@ class Player < ApplicationRecord
     has_many :matches, through: :player_matches
     accepts_nested_attributes_for :styles
 
+    #scope :filter_by_criteria(attribute, id),
+
     scope :filter_by_forehand, -> (forehand_grip_id) {where forehand_grip_id: forehand_grip_id}
 
     scope :filter_by_backhand, -> (backhand_type_id) {where backhand_type_id: backhand_type_id}
@@ -39,7 +41,13 @@ class Player < ApplicationRecord
     scope :filter_by_first_name, -> (first_name){where first_name: first_name.capitalize}
 
     scope :filter_by_last_name, -> (last_name){where last_name: last_name.capitalize}
-    
+
+    # experimental scopes
+    #scope :has_backhand_videos, ->{joins(:videos).where('category_id= 2')}
+
+    #scope :older_than_30, ->{where('birthdate < ?', DateTime.now - 30.years)}
+
+    # Player.joins(:videos).group("videos.id").order("count(videos.id) DESC")
 
     def styles_attributes=(style_attributes)
         style_attributes.values.each do |style_attribute|
@@ -85,5 +93,6 @@ class Player < ApplicationRecord
         inches + feet*12
     end
 
+    
     
 end

@@ -7,7 +7,6 @@ class Country < ApplicationRecord
         flag_image.attached?
     end
 
-    
-
     scope :sort_by_name, -> {sort_by{|c| c.name}.collect{|f| [f.name, f.id]}}
+
 end

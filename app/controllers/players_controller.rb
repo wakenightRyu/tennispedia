@@ -25,8 +25,17 @@ class PlayersController < ApplicationController
         players_count
     end
 
-    def sort 
-        @players=@players.sort_by_most_videos
+    def backhand
+        @players=Player.has_backhand_videos.uniq
+        instance_variable_players_sorted_by_name
+        players_count
+        render :backhand
+    end
+
+    def age
+        @players=Player.older_than_30
+        instance_variable_players_sorted_by_name
+        render :index
     end
 
     def search
