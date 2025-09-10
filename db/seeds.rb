@@ -29,5 +29,5 @@
 # BackhandType.create(name: 'One-Handed')
 # BackhandType.create(name: 'Two-Handed')
 
-Category.create(name: 'Montage')
-Category.create(name: 'Clip')
+# Category.create(name: 'Montage')
+# Category.create(name: 'Clip')
