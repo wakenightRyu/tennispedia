@@ -19,10 +19,12 @@ class Video < ApplicationRecord
         self.category.name 
     end
 
+    require 'uri'
+
     def youtube_url_parse
-        remove="https://www.youtube.com/watch?v="
-        self.link.slice! remove
-        self.link
+        uri = URI.parse(link)
+        video_id = URI.decode_www_form(uri.query).to_h['v']
+        video_id
     end
 
     def prefix
@@ -31,7 +33,8 @@ class Video < ApplicationRecord
 
     def youtube_link?
         unless link.empty?
-            if !link.start_with?(prefix)
+            uri = URI.parse(link)
+            if uri.host != 'www.youtube.com' || !uri.path.start_with?('/watch')
                 errors.add(:video_link, "is not a valid YouTube link")
             end
         end
@@ -50,5 +53,3 @@ class Video < ApplicationRecord
     end 
     
 end    
-    
-
